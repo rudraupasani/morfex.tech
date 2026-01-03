@@ -13,101 +13,108 @@ const faqs = [
   {
     question: "How long does a project take?",
     answer:
-      "Project timelines vary depending on the scope. Typically, web applications take 4-12 weeks, while complex platforms or mobile apps may take 3-6 months.",
+      "Project timelines vary depending on the scope. Typically, web applications take 4–12 weeks, while complex platforms or mobile apps may take 3–6 months.",
   },
   {
     question: "Do you provide post-launch support?",
     answer:
-      "Yes! We offer maintenance, updates, and support packages to ensure your software continues running smoothly.",
+      "Yes! We offer maintenance, updates, and long-term support packages to keep your product stable, secure, and optimized.",
   },
   {
     question: "Can you handle enterprise-level projects?",
     answer:
-      "Absolutely. Our team has experience working with startups as well as enterprise clients to deliver secure, scalable, and high-performance solutions.",
+      "Absolutely. We design enterprise-ready systems focusing on scalability, security, and performance.",
   },
   {
     question: "Do you work with startups and small businesses?",
     answer:
-      "Yes, we tailor our services to fit your budget and requirements, ensuring high-quality results for projects of any size.",
+      "Yes, we collaborate with startups and SMBs, offering flexible pricing and scalable solutions tailored to growth.",
   },
 ];
 
 export default function QuestionsPage() {
   const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleIndex = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <>
+    <section className="relative bg-gradient-to-b from-white via-slate-50 to-white py-28">
 
-      <section className="relative bg-white py-24">
-        <div className="max-w-5xl mx-auto px-6">
+      <div className="relative max-w-5xl mx-auto px-6">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <span className="text-blue-600 font-medium">FAQs</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-gray-600 mt-5 text-lg max-w-2xl mx-auto">
+            Everything you need to know about working with Morfex Tech.
+          </p>
+        </motion.div>
 
-          {/* Header */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <span className="text-blue-600 font-medium">FAQs</span>
-            <h1 className="text-4xl md:text-5xl font-bold mt-2">
-              Frequently Asked Questions
-            </h1>
-            <p className="text-gray-600 mt-4 text-lg">
-              Answers to common questions about working with Morfex Tech.
-            </p>
-          </motion.div>
+        {/* FAQ List */}
+        <div className="space-y-6">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
 
-          {/* FAQ List */}
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
+            return (
               <motion.div
                 key={index}
-                className="bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden cursor-pointer hover:scale-[1.01] transition-transform duration-300"
+                className="relative rounded-2xl border border-gray-200 bg-white shadow-md"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6, type: "spring", stiffness: 80 }}
+                transition={{
+                  delay: index * 0.1,
+                  duration: 0.6,
+                  ease: "easeOut",
+                }}
                 viewport={{ once: true }}
               >
                 {/* Question */}
-                <div
-                  className="flex items-center justify-between p-6"
-                  onClick={() => toggleIndex(index)}
+                <button
+                  onClick={() =>
+                    setOpenIndex(isOpen ? null : index)
+                  }
+                  className="w-full flex items-center justify-between gap-6 p-7 text-left"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
-                  <motion.div
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ type: "fade", stiffness: 300 }}
-                  >
-                    <ChevronDown size={24} className="text-blue-600" />
-                  </motion.div>
-                </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900">
+                    {faq.question}
+                  </h3>
 
-                {/* Answer */}
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <ChevronDown
+                      size={26}
+                      className="text-blue-600"
+                    />
+                  </motion.div>
+                </button>
+
+                {/* Answer – LAG FREE */}
                 <AnimatePresence initial={false}>
-                  {openIndex === index && (
+                  {isOpen && (
                     <motion.div
-                      key="content"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.5, type: "fade", stiffness: 90 }}
-                      className="px-6 pb-6 text-gray-600 text-base"
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="px-7 pb-7 text-gray-600 leading-relaxed"
                     >
                       {faq.answer}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </section>
-
-    </>
+      </div>
+    </section>
   );
 }

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, time } from "framer-motion";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { Mail } from "lucide-react";
 
 const Page = () => {
   const [name, setName] = useState("");
@@ -97,7 +98,12 @@ const Page = () => {
             <div className="space-y-6">
               <div className="p-6 bg-white rounded-2xl shadow-md border-blue-500 border-l-15">
                 <p className="font-semibold">Email</p>
-                <p className="text-gray-600">rudraupasani7@gmail.com</p>
+                <a
+                  href="mailto:morfextech@gmail.com"
+                  className="text-gray-600 hover:text-blue-600 transition"
+                >
+                 morfextech@gmail.com
+                </a>
               </div>
 
               <div className="p-6 bg-white rounded-2xl shadow-md border-blue-500 border-l-15">

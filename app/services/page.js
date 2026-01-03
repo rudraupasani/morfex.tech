@@ -16,6 +16,7 @@ const services = [
       "Android (Kotlin)",
       "Firebase",
       "Supabase",
+      "MongoDB"
     ],
     image: "https://softwebcreations.com/assets/img/about.png",
     reverse: false,
@@ -35,6 +36,7 @@ const services = [
       "MySQL",
       "MongoDB",
       "Vercel",
+      "PHP"
     ],
     image: "https://softwebcreations.com/assets/img/features-1.png",
     reverse: true,
