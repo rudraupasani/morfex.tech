@@ -134,7 +134,7 @@ export default function Footer() {
             <motion.a
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.95 }}
-              href="https://www.linkedin.com/in/rudraupasani"
+              href="https://www.linkedin.com/company/morfextech"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-blue-600 transition"

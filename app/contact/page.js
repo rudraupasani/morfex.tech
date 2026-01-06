@@ -187,6 +187,7 @@ const Page = () => {
                   className="w-full px-5 py-4 cursor-pointer rounded-xl border bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Estimated Budget</option>
+                  <option>$50 - $100</option>
                   <option>$100 - $300</option>
                   <option>$500 – $1K</option>
                   <option>$2k – $5K</option>
@@ -200,7 +201,8 @@ const Page = () => {
                   className="w-full px-5 py-4 rounded-xl border cursor-pointer bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Project Timeline</option>
-                  <option>2–4 Weeks</option>
+                  <option>1-5 Days</option>
+                  <option>1–2 Weeks</option>
                   <option>1–2 Months</option>
                   <option>3–6 Months</option>
                   <option>Long Term</option>
