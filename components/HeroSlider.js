@@ -24,7 +24,7 @@ export default function HeroSection() {
             transition={{ delay: 0.1 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full bg-blue-100 text-blue-600 border border-blue-200"
           >
-            Limited Offer - 20% Off
+            Limited Offer - 30% Off
           </motion.span>
 
           {/* Heading */}

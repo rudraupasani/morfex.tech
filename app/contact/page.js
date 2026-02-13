@@ -102,7 +102,7 @@ const Page = () => {
                   href="mailto:morfextech@gmail.com"
                   className="text-gray-600 hover:text-blue-600 transition"
                 >
-                 morfextech@gmail.com
+                  morfextech@gmail.com
                 </a>
               </div>
 
@@ -187,6 +187,7 @@ const Page = () => {
                   className="w-full px-5 py-4 cursor-pointer rounded-xl border bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Estimated Budget</option>
+                  <option>$25 - $50</option>
                   <option>$50 - $100</option>
                   <option>$100 - $300</option>
                   <option>$500 – $1K</option>

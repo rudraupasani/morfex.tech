@@ -6,8 +6,8 @@ import { Star, UserCircle } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Mr Nilesh",
-    role: "Founder , Microcam",
+    name: "Mr.Nilesh",
+    role: "Founder, Microcam",
     message:
       "Morfex Tech delivered an outstanding product with excellent performance and a clean, modern UI. Their team understood our requirements clearly and executed everything smoothly from start to finish.",
   },

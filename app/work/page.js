@@ -4,161 +4,199 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+
+/* ================= ANIMATION VARIANTS ================= */
+
+const containerVariants = {
+    hidden: {},
+    show: {
+        transition: {
+            staggerChildren: 0.15, // stagger animation
+        },
+    },
+};
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 60 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+};
+
+/* ================= PROJECT DATA ================= */
 
 const projects = [
     {
-        title: "Cluezy - Agentic Research Engine",
+        title: "Microcam - CCTV & Surveillance",
         description:
-            "Spain Academy approached me to design a modern, vibrant website that would help attract students to their Spanish-LCA course. This intensive course immerses students in the Spanish language, culture, and university experience, ultimately helping them gain access to Spanish universities. The website had to reflect the energy and excitement of the Spanish culture while providing clear information on the course offerings and the admissions process.",
-        image: "",
-        tech: ["Next.js", "Tailwind", "Framer Motion" , "Supabase" , "Vercel" , "Redis" , "Node.js" ],
+            "Modern security product website showcasing CCTV cameras and surveillance systems.",
+        longDescription:
+            "Microcam is a premium surveillance brand website built for product showcasing, branding, smooth animations and professional user experience.",
+        image: "https://myacernity.vercel.app/micro-ss.png",
+        tech: ["React", "Tailwind", "Framer Motion"],
+        live: "#",
     },
     {
         title: "Drft Marketing",
         description:
-            "Spain Academy approached me to design a modern, vibrant website that would help attract students to their Spanish-LCA course. This intensive course immerses students in the Spanish language, culture, and university experience, ultimately helping them gain access to Spanish universities. The website had to reflect the energy and excitement of the Spanish culture while providing clear information on the course offerings and the admissions process.",
+            "A modern marketing website focused on conversion, animations and high-performance architecture.",
+        longDescription:
+            "Drft Marketing was built with performance-first architecture, smooth animations, SEO optimization and strong conversion design to maximize engagement and leads.",
         image: "https://myacernity.vercel.app/drft-thumb.png",
-        tech: ["Next.js", "Tailwind", "Framer Motion"],
+        tech: ["Next.js", "Tailwind", "Framer Motion", "Node JS"],
+        live: "#",
     },
     {
         title: "Instakit",
         description:
-            "Spain Academy approached me to design a modern, vibrant website that would help attract students to their Spanish-LCA course. This intensive course immerses students in the Spanish language, culture, and university experience, ultimately helping them gain access to Spanish universities. The website had to reflect the energy and excitement of the Spanish culture while providing clear information on the course offerings and the admissions process.",
+            "Toolkit platform with auth, dashboards and scalable backend using Supabase and MongoDB.",
+        longDescription:
+            "Instakit provides authentication, dashboards, database management and scalable backend services for teams and startups.",
         image: "https://myacernity.vercel.app/qucikit-thumb.png",
-        tech: ["React", "Supabase", "AWS"],
+        tech: ["React", "Supabase", "Node JS", "MongoDB"],
+        live: "#",
     },
     {
         title: "Hook.live",
         description:
-            "Spain Academy approached me to design a modern, vibrant website that would help attract students to their Spanish-LCA course. This intensive course immerses students in the Spanish language, culture, and university experience, ultimately helping them gain access to Spanish universities. The website had to reflect the energy and excitement of the Spanish culture while providing clear information on the course offerings and the admissions process.",
+            "Real-time live platform with blazing fast UI and scalable backend architecture.",
+        longDescription:
+            "Hook.live enables real-time communication with optimized React UI, websocket architecture and high performance backend services.",
         image: "https://myacernity.vercel.app/hook-thumb.png",
-        tech: ["React", "Supabase", "AWS"],
+        tech: ["React", "Supabase", "Node JS", "MongoDB" , "Express JSs"],
+        live: "#",
     },
-    {
-        title: "Microcam",
-        description:
-            "Microcam.in is a fully modern, responsive security product website designed to showcase CCTV cameras, DVR systems, and smart surveillance solutions. I built the entire frontend using React and Tailwind CSS, focusing on smooth UI, fast performance, and a premium brand feel.",
-        image: "https://myacernity.vercel.app/micro-ss.png",
-        tech: ["React", "Tailwind", "Framer Motion"],
-    },
+
 ];
 
+/* ================= COMPONENT ================= */
+
 export default function OurWorkPage() {
-    const [activeProject, setActiveProject] = useState(null);
+    const [openIndex, setOpenIndex] = useState(null);
+
+    const toggleProject = (index) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
 
     return (
         <>
             <Navbar />
 
-            <section className="relative bg-white py-24">
+            <section className="bg-white py-28">
                 <div className="max-w-7xl mx-auto px-6">
 
-                    {/* Header */}
+                    {/* ================= HEADER ================= */}
                     <motion.div
-                        className="text-center max-w-3xl mx-auto mb-20"
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
+                        className="text-center max-w-3xl mx-auto mb-24"
                     >
                         <span className="text-blue-600 font-medium">Our Work</span>
-                        <h1 className="text-4xl md:text-5xl font-bold mt-2">
-                            Projects We've Delivered
+
+                        <h1 className="text-5xl font-bold mt-3">
+                            Projects We’ve Delivered
                         </h1>
-                        <p className="text-gray-600 mt-4 text-lg">
-                            Real-world products crafted with modern technology and design.
+
+                        <p className="text-gray-600 mt-4">
+                            Real products crafted with performance & scalability.
                         </p>
                     </motion.div>
 
-                    {/* Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* ================= PROJECT LIST ================= */}
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="show"            // 🔥 animation only on scroll
+                        viewport={{ once: true, amount: 0.2 }}
+                        className="space-y-16"
+                    >
                         {projects.map((project, index) => (
                             <motion.div
                                 key={index}
-                                onClick={() => setActiveProject(project)}
-                                className="group cursor-pointer rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
+                                variants={cardVariants}
+                                className="rounded-3xl  p-8 shadow-sm hover:shadow-lg transition"
                             >
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-70 object-cover group-hover:scale-105 transition-transform duration-500"
-                                />
-                                <div className="p-6">
-                                    <h3 className="text-xl font-semibold">{project.title}</h3>
-                                    <p className="text-gray-600 mt-2 text-sm line-clamp-2">
-                                        {project.description}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+                                {/* ROW */}
+                                <div className="grid md:grid-cols-2 gap-14 items-center">
 
-            {/* Modal */}
-            <AnimatePresence>
-                {activeProject && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            className="fixed inset-0 bg-black/60 backdrop-blur-md z-40"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setActiveProject(null)}
-                        />
+                                    {/* IMAGE */}
+                                    <motion.img
+                                        src={project.image}
+                                        alt={project.title}
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="rounded-2xl shadow-lg w-full"
+                                    />
 
-                        {/* Modal Card */}
-                        <motion.div
-                            className="fixed z-50 inset-0 flex items-center justify-center px-6"
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                        >
-                            <div className="bg-white max-w-3xl w-full rounded-3xl overflow-hidden shadow-2xl relative">
+                                    {/* INFO */}
+                                    <div className="space-y-5">
+                                        <h2 className="text-3xl font-bold">
+                                            {project.title}
+                                        </h2>
 
-                                {/* Close */}
-                                <button
-                                    onClick={() => setActiveProject(null)}
-                                    className="absolute cursor-pointer top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200"
-                                >
-                                    <X size={20} />
-                                </button>
+                                        <p className="text-gray-600">
+                                            {project.description}
+                                        </p>
 
-                                <img
-                                    src={activeProject.image}
-                                    alt={activeProject.title}
-                                    className="w-full h-100 object-cover"
-                                />
+                                        {/* TECH TAGS */}
+                                        <div className="flex flex-wrap gap-3">
+                                            {project.tech.map((t, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="px-4 py-1 text-sm rounded-full bg-blue-100 text-blue-700"
+                                                >
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
 
-                                <div className="p-8">
-                                    <h2 className="text-3xl font-bold">
-                                        {activeProject.title}
-                                    </h2>
-                                    <p className="text-gray-600 mt-4">
-                                        {activeProject.description}
-                                    </p>
-
-                                    {/* Tech Stack */}
-                                    <div className="flex flex-wrap gap-3 mt-6">
-                                        {activeProject.tech.map((t, i) => (
-                                            <span
-                                                key={i}
-                                                className="px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium"
-                                            >
-                                                {t}
-                                            </span>
-                                        ))}
+                                        {/* BUTTON */}
+                                        <button
+                                            onClick={() => toggleProject(index)}
+                                            className="mt-4 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition cursor-pointer"
+                                        >
+                                            {openIndex === index
+                                                ? "Close Details ↑"
+                                                : "See More →"}
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
+
+                                {/* ================= EXPAND DETAILS ================= */}
+                                <AnimatePresence>
+                                    {openIndex === index && (
+                                        <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: "auto" }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            transition={{ duration: 0.35 }}
+                                            className="overflow-hidden"
+                                        >
+                                            <div className="mt-8 border-t pt-8 text-gray-700">
+                                                <p className="leading-relaxed mb-6">
+                                                    {project.longDescription}
+                                                </p>
+
+                                                <a
+                                                    href={project.live}
+                                                    target="_blank"
+                                                    className="inline-block px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+                                                >
+                                                    Live Demo
+                                                </a>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
 
             <Footer />
         </>
