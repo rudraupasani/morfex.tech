@@ -79,7 +79,7 @@ export default function QuestionsPage() {
                   onClick={() =>
                     setOpenIndex(isOpen ? null : index)
                   }
-                  className="w-full flex items-center justify-between gap-6 p-7 text-left"
+                  className="w-full cursor-pointer flex items-center justify-between gap-6 p-7 text-left"
                 >
                   <h3 className="text-lg md:text-xl font-semibold text-gray-900">
                     {faq.question}

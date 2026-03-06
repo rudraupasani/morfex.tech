@@ -6,14 +6,14 @@ import { Star, UserCircle } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Mr.Nilesh",
+    name: "Mr. Nilesh",
     role: "Founder, Microcam",
     message:
       "Morfex Tech delivered an outstanding product with excellent performance and a clean, modern UI. Their team understood our requirements clearly and executed everything smoothly from start to finish.",
   },
   {
     name: "Bhargav Rao",
-    role: "Product Manager ",
+    role: "Product Manager",
     message:
       "Working with Morfex Tech was a great experience. Communication was clear, timelines were respected, and the final product matched our expectations perfectly with great attention to detail.",
   },
@@ -25,12 +25,11 @@ const testimonials = [
   },
   {
     name: "Priya Verma",
-    role: "Marketing Lead , Optivex",
+    role: "Marketing Lead, Optivex",
     message:
       "Their UI/UX improvements significantly boosted user engagement and conversions. The design felt premium, intuitive, and aligned perfectly with our brand goals.",
   },
 ];
-
 
 const sliderItems = [...testimonials, ...testimonials];
 
@@ -38,15 +37,16 @@ export default function Testimonials() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section className="bg-gradient-to-b from-white via-slate-50 to-white py-20 overflow-hidden">
+    <section className="bg-gradient-to-b from-white via-slate-50 to-white py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
+
         {/* Header */}
-        <div className="text-center mb-12">
-          <span className="text-blue-600 text-sm font-medium uppercase">
+        <div className="text-center mb-16">
+          <span className="text-blue-600 text-sm font-semibold uppercase tracking-wider">
             Testimonials
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">
-            Customer Reviews
+          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-gray-900">
+            What Our Clients Say
           </h2>
         </div>
 
@@ -57,10 +57,10 @@ export default function Testimonials() {
           className="relative overflow-hidden"
         >
           <motion.div
-            className="flex gap-6"
+            className="flex gap-8"
             animate={{ x: paused ? undefined : "-50%" }}
             transition={{
-              duration: 24,
+              duration: 26,
               ease: "linear",
               repeat: Infinity,
             }}
@@ -69,27 +69,27 @@ export default function Testimonials() {
             {sliderItems.map((item, index) => (
               <div
                 key={index}
-                className="min-w-[250px] max-w-[250px] bg-white border border-gray-200 rounded-xl shadow-md p-5"
+                className="min-w-[320px] max-w-[320px] bg-white border border-gray-200 rounded-2xl shadow-lg p-6 transition-all hover:shadow-xl"
               >
                 {/* Stars */}
-                <div className="flex gap-1 mb-3">
+                <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      size={14}
+                      size={16}
                       className="fill-yellow-400 text-yellow-400"
                     />
                   ))}
                 </div>
 
                 {/* Message */}
-                <p className="text-sm text-gray-700 leading-relaxed mb-4">
+                <p className="text-gray-600 text-sm leading-relaxed mb-6">
                   “{item.message}”
                 </p>
 
                 {/* User */}
-                <div className="flex items-center gap-2">
-                  <UserCircle size={32} className="text-blue-600" />
+                <div className="flex items-center gap-3">
+                  <UserCircle size={36} className="text-blue-600" />
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900">
                       {item.name}
@@ -104,9 +104,10 @@ export default function Testimonials() {
           </motion.div>
 
           {/* Fade edges */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent" />
         </div>
+
       </div>
     </section>
   );

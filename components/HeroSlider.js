@@ -24,7 +24,7 @@ export default function HeroSection() {
             transition={{ delay: 0.1 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full bg-blue-100 text-blue-600 border border-blue-200"
           >
-            Limited Offer - 30% Off
+            Limited Offer - 10% Off
           </motion.span>
 
           {/* Heading */}
@@ -83,7 +83,6 @@ export default function HeroSection() {
             src="https://softwebcreations.com/assets/img/hero-img.png"
             alt="Morfex Tech Hero"
             className="relative w-full h-full object-contain"
-            animate={{ y: [0, -12, 0] }}
             transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
           />
         </motion.div>

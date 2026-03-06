@@ -154,14 +154,13 @@ export default function ServicesPage() {
                   alt={service.title}
                   width={600}
                   height={450}
-                  className="relative rounded-3xl shadow-2xl"
+                  className="relative rounded-3xl"
                 />
               </motion.div>
             </motion.div>
           ))}
         </div>
       </section>
-
       <Footer />
     </>
   );

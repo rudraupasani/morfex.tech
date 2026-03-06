@@ -1,121 +1,132 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle, Zap, Shield, Users, TrendingUp, Rocket } from "lucide-react";
+import {
+  CheckCircle,
+  Zap,
+  Shield,
+  Users,
+  TrendingUp,
+  Rocket,
+} from "lucide-react";
 
 const benefits = [
   {
     icon: CheckCircle,
     title: "High-Quality Software",
     description:
-      "We deliver reliable, scalable, and maintainable software solutions using the latest technologies. Every line of code is optimized for performance and future scalability.",
+      "Reliable, scalable, and maintainable software built with modern technologies and optimized for long-term growth.",
     tag: "Reliable",
   },
   {
     icon: Zap,
     title: "Fast Delivery",
     description:
-      "Our agile workflow ensures your projects are delivered on time without compromising quality. We streamline sprints and prioritize efficiency in every stage.",
+      "Our agile development workflow ensures fast project delivery while maintaining excellent code quality.",
     tag: "Efficient",
   },
   {
     icon: Shield,
     title: "Secure Solutions",
     description:
-      "Security is our top priority. We implement best practices and conduct thorough audits to protect your applications and sensitive data from vulnerabilities.",
+      "Security-first development with industry best practices to protect your data and systems.",
     tag: "Safe",
   },
   {
     icon: Users,
     title: "Expert Team",
     description:
-      "Our team of experienced developers, designers, and product managers ensures top-notch results. Collaboration and expertise are at the core of our process.",
+      "A team of experienced developers and designers focused on building high-quality digital products.",
     tag: "Professional",
   },
   {
     icon: TrendingUp,
     title: "Business Growth",
     description:
-      "We focus on building solutions that help your business scale efficiently. From performance optimization to user engagement, we aim for measurable growth.",
+      "Solutions designed to scale with your business and improve performance and engagement.",
     tag: "Scalable",
   },
   {
     icon: Rocket,
     title: "Innovative Solutions",
     description:
-      "We bring creativity and modern technology together to provide innovative solutions that keep your business ahead in the digital landscape.",
+      "Modern technologies and creative thinking to build innovative digital experiences.",
     tag: "Modern",
   },
 ];
 
 export default function BenefitsPage() {
   return (
-    <section className="relative bg-white py-32 overflow-hidden">
-
-      {/* Background Decorative Shapes */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
-      <div className="absolute -top-40 -left-20 w-72 h-72 bg-pink-300/5 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-20 right-10 w-64 h-64 bg-green-300/5 rounded-full blur-2xl"></div>
+    <section className="relative bg-gradient-to-b from-white via-slate-50 to-white py-28 overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute -top-32 right-0 w-96 h-96 bg-blue-400/10 blur-3xl rounded-full"></div>
+      <div className="absolute bottom-0 -left-32 w-96 h-96 bg-indigo-400/10 blur-3xl rounded-full"></div>
 
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
         <motion.div
-          className="text-center max-w-3xl mx-auto mb-20"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center max-w-2xl mx-auto mb-20"
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <span className="text-blue-600 font-medium text-sm md:text-base">Why Choose Morfex Tech</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-2">
-            Benefits of Working with Morfex Tech
-          </h1>
-          <p className="text-gray-600 mt-4 text-lg md:text-xl">
-            Partner with us to get modern, secure, and scalable software solutions tailored to your business needs. We combine expertise, innovation, and commitment to deliver outstanding results.
+          <span className="text-blue-600 font-semibold uppercase tracking-wider text-sm">
+            Why Choose Us
+          </span>
+
+          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-gray-900">
+            Benefits of Working With Morfex Tech
+          </h2>
+
+          <p className="text-gray-600 mt-4 leading-relaxed">
+            We combine modern technologies, strong engineering practices,
+            and business-focused strategies to deliver software that drives growth.
           </p>
         </motion.div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
 
             return (
               <motion.div
                 key={index}
-                className="flex flex-col items-start gap-4 p-8 rounded-3xl bg-white border border-gray-100 shadow-lg hover:shadow-2xl hover:scale-[1.03] transition-all duration-500 relative overflow-hidden"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
                 viewport={{ once: true }}
+                className="group relative bg-white border border-gray-200 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
               >
-                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 shadow-inner">
-                  <Icon size={28} />
+                {/* Icon */}
+                <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-blue-500 text-white shadow-md mb-6 group-hover:scale-110 transition">
+                  <Icon size={26} />
                 </div>
 
-                <div>
-                  <h3 className="text-2xl font-semibold text-gray-900">{benefit.title}</h3>
-                  <p className="text-gray-600 mt-2 text-base md:text-lg">{benefit.description}</p>
-                  {benefit.tag && (
-                    <span className="inline-block mt-3 px-3 py-1 text-sm font-medium bg-blue-50 text-blue-600 rounded-full">
-                      {benefit.tag}
-                    </span>
-                  )}
-                </div>
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {benefit.title}
+                </h3>
 
-                {/* Subtle hover glow */}
-                <motion.div
-                  className="absolute -top-20 -right-20 w-40 h-40 bg-blue-200/20 rounded-full blur-3xl pointer-events-none"
-                  initial={{ scale: 0 }}
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ duration: 0.5 }}
-                />
+                {/* Description */}
+                <p className="text-gray-600 text-sm mt-3 leading-relaxed">
+                  {benefit.description}
+                </p>
+
+                {/* Tag */}
+                <span className="inline-block mt-5 text-xs font-semibold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
+                  {benefit.tag}
+                </span>
+
+                {/* subtle border glow */}
+                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-blue-200 pointer-events-none transition"></div>
               </motion.div>
             );
           })}
         </div>
+
       </div>
     </section>
   );
