@@ -5,13 +5,27 @@
     "description": "Modern security product website showcasing CCTV cameras and surveillance systems.",
     "longDescription": "Microcam is a premium surveillance brand website built for product showcasing, branding, smooth animations and professional user experience.",
     "image": "https://myacernity.vercel.app/micro-ss.png",
-    "tech": [
-      "React",
-      "Tailwind",
-      "Framer Motion"
+    "tech": ["React", "Tailwind", "Framer Motion"],
+    "features": [
+      "Product showcase",
+      "Smooth UI animations",
+      "Responsive design",
+      "SEO optimized pages",
+      "Contact form integration"
     ],
+    "category": "Landing Page",
+    "role": "Frontend Developer",
+    "client": "Microcam Security",
+    "year": "2025",
+    "status": "Live",
+    "metrics": {
+      "performance": "95+ Lighthouse",
+      "seo": "98",
+      "loadTime": "0.9s"
+    },
     "Time": "2 days",
-    "live": "#"
+    "live": "#",
+    "github": "#"
   },
   {
     "slug": "drft-marketing",
@@ -19,45 +33,82 @@
     "description": "A modern marketing website focused on conversion, animations and high-performance architecture.",
     "longDescription": "Drft Marketing was built with performance-first architecture, smooth animations, SEO optimization and strong conversion design to maximize engagement and leads.",
     "image": "https://myacernity.vercel.app/drft-thumb.png",
-    "tech": [
-      "Next.js",
-      "Tailwind",
-      "Framer Motion",
-      "Node JS"
+    "tech": ["Next.js", "Tailwind", "Framer Motion", "Supabase"],
+    "features": [
+      "High-conversion landing pages",
+      "Smooth scroll animations",
+      "SEO optimized structure",
+      "Lead capture forms",
+      "Fast loading pages"
     ],
+    "category": "Marketing Website",
+    "role": "Full Stack Developer",
+    "client": "Drft Marketing",
+    "year": "2025",
+    "status": "Live",
+    "metrics": {
+      "performance": "96 Lighthouse",
+      "seo": "99",
+      "loadTime": "0.8s"
+    },
     "Time": "7 days",
-    "live": "#"
+    "live": "#",
+    "github": "#"
   },
   {
     "slug": "instakit",
     "title": "Instakit",
-    "description": "Toolkit platform with auth, dashboards and scalable backend using Supabase and MongoDB.",
-    "longDescription": "Instakit provides authentication, dashboards, database management and scalable backend services for teams and startups.",
+    "description": "Toolkit platform with authentication, dashboards and scalable backend using Supabase and MongoDB.",
+    "longDescription": "Instakit provides authentication, dashboards, database management and scalable backend services for startups and teams with modern developer experience.",
     "image": "https://myacernity.vercel.app/qucikit-thumb.png",
-    "tech": [
-      "React",
-      "Supabase",
-      "Node JS",
-      "MongoDB"
+    "tech": ["React", "Supabase", "Node JS", "MongoDB" , "Express JS", "Tailwind", "Framer Motion"],
+    "features": [
+      "Secure authentication system",
+      "Admin dashboard",
+      "Database management",
+      "User management system",
+      "Scalable backend architecture"
     ],
+    "category": "SaaS Platform",
+    "role": "Full Stack Developer",
+    "client": "Internal Project",
+    "year": "2025",
+    "status": "Development",
+    "metrics": {
+      "performance": "94 Lighthouse",
+      "apiResponse": "120ms",
+      "loadTime": "1.1s"
+    },
     "Time": "7 days",
-    "live": "#"
+    "live": "#",
+    "github": "#"
   },
   {
     "slug": "hook-live",
     "title": "Hook.live",
     "description": "Real-time live platform with blazing fast UI and scalable backend architecture.",
-    "longDescription": "Hook.live enables real-time communication with optimized React UI, websocket architecture and high performance backend services.",
+    "longDescription": "Hook.live enables real-time communication with optimized React UI, websocket architecture and high performance backend services for scalable real-time platforms.",
     "image": "https://myacernity.vercel.app/hook-thumb.png",
-    "tech": [
-      "Next.js",
-      "Tailwind",
-      "Framer Motion",
-      "Node JS",
-      "MongoDB",
-      "Express JS"
+    "tech": ["Next.js", "Tailwind", "Framer Motion", "Node JS", "MongoDB", "Express JS"],
+    "features": [
+      "Real-time messaging",
+      "WebSocket architecture",
+      "High performance backend",
+      "Responsive UI",
+      "Secure authentication"
     ],
+    "category": "Real-time Platform",
+    "role": "Full Stack Developer",
+    "client": "Startup Project",
+    "year": "2025",
+    "status": "Development",
+    "metrics": {
+      "performance": "93 Lighthouse",
+      "latency": "80ms",
+      "loadTime": "1.2s"
+    },
     "Time": "10 days",
-    "live": "#"
+    "live": "#",
+    "github": "#"
   }
 ]

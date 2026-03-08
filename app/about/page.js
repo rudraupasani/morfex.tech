@@ -95,7 +95,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute -inset-6 bg-blue-500/10 rounded-3xl blur-2xl" />
+            <div className="absolute  rounded-3xl" />
             <img
               src="https://softwebcreations.com/assets/img/hero-img.png"
               alt="About Morfex Tech"
