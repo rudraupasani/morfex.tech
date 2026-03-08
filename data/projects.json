@@ -1,0 +1,63 @@
+[
+  {
+    "slug": "microcam",
+    "title": "Microcam - CCTV & Surveillance",
+    "description": "Modern security product website showcasing CCTV cameras and surveillance systems.",
+    "longDescription": "Microcam is a premium surveillance brand website built for product showcasing, branding, smooth animations and professional user experience.",
+    "image": "https://myacernity.vercel.app/micro-ss.png",
+    "tech": [
+      "React",
+      "Tailwind",
+      "Framer Motion"
+    ],
+    "Time": "2 days",
+    "live": "#"
+  },
+  {
+    "slug": "drft-marketing",
+    "title": "Drft Marketing",
+    "description": "A modern marketing website focused on conversion, animations and high-performance architecture.",
+    "longDescription": "Drft Marketing was built with performance-first architecture, smooth animations, SEO optimization and strong conversion design to maximize engagement and leads.",
+    "image": "https://myacernity.vercel.app/drft-thumb.png",
+    "tech": [
+      "Next.js",
+      "Tailwind",
+      "Framer Motion",
+      "Node JS"
+    ],
+    "Time": "7 days",
+    "live": "#"
+  },
+  {
+    "slug": "instakit",
+    "title": "Instakit",
+    "description": "Toolkit platform with auth, dashboards and scalable backend using Supabase and MongoDB.",
+    "longDescription": "Instakit provides authentication, dashboards, database management and scalable backend services for teams and startups.",
+    "image": "https://myacernity.vercel.app/qucikit-thumb.png",
+    "tech": [
+      "React",
+      "Supabase",
+      "Node JS",
+      "MongoDB"
+    ],
+    "Time": "7 days",
+    "live": "#"
+  },
+  {
+    "slug": "hook-live",
+    "title": "Hook.live",
+    "description": "Real-time live platform with blazing fast UI and scalable backend architecture.",
+    "longDescription": "Hook.live enables real-time communication with optimized React UI, websocket architecture and high performance backend services.",
+    "image": "https://myacernity.vercel.app/hook-thumb.png",
+    "tech": [
+      "Next.js",
+      "Tailwind",
+      "Framer Motion",
+      "Node JS",
+      "MongoDB",
+      "Express JS"
+    ],
+    "Time": "10 days",
+    "live": "#"
+  }
+]

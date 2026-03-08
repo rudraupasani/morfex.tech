@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import projects from "@/data/projects.json";
 
 /* ================= ANIMATION VARIANTS ================= */
 
@@ -11,7 +12,7 @@ const containerVariants = {
     hidden: {},
     show: {
         transition: {
-            staggerChildren: 0.15, // stagger animation
+            staggerChildren: 0.15,
         },
     },
 };
@@ -25,61 +26,9 @@ const cardVariants = {
     },
 };
 
-/* ================= PROJECT DATA ================= */
-
-const projects = [
-    {
-        title: "Microcam - CCTV & Surveillance",
-        description:
-            "Modern security product website showcasing CCTV cameras and surveillance systems.",
-        longDescription:
-            "Microcam is a premium surveillance brand website built for product showcasing, branding, smooth animations and professional user experience.",
-        image: "https://myacernity.vercel.app/micro-ss.png",
-        tech: ["React", "Tailwind", "Framer Motion"],
-        live: "#",
-    },
-    {
-        title: "Drft Marketing",
-        description:
-            "A modern marketing website focused on conversion, animations and high-performance architecture.",
-        longDescription:
-            "Drft Marketing was built with performance-first architecture, smooth animations, SEO optimization and strong conversion design to maximize engagement and leads.",
-        image: "https://myacernity.vercel.app/drft-thumb.png",
-        tech: ["Next.js", "Tailwind", "Framer Motion", "Node JS"],
-        live: "#",
-    },
-    {
-        title: "Instakit",
-        description:
-            "Toolkit platform with auth, dashboards and scalable backend using Supabase and MongoDB.",
-        longDescription:
-            "Instakit provides authentication, dashboards, database management and scalable backend services for teams and startups.",
-        image: "https://myacernity.vercel.app/qucikit-thumb.png",
-        tech: ["React", "Supabase", "Node JS", "MongoDB"],
-        live: "#",
-    },
-    {
-        title: "Hook.live",
-        description:
-            "Real-time live platform with blazing fast UI and scalable backend architecture.",
-        longDescription:
-            "Hook.live enables real-time communication with optimized React UI, websocket architecture and high performance backend services.",
-        image: "https://myacernity.vercel.app/hook-thumb.png",
-        tech: ["React", "Supabase", "Node JS", "MongoDB" , "Express JSs"],
-        live: "#",
-    },
-
-];
-
 /* ================= COMPONENT ================= */
 
 export default function OurWorkPage() {
-    const [openIndex, setOpenIndex] = useState(null);
-
-    const toggleProject = (index) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
-
     return (
         <>
             <Navbar />
@@ -98,11 +47,11 @@ export default function OurWorkPage() {
                         <span className="text-blue-600 font-medium">Our Work</span>
 
                         <h1 className="text-5xl font-bold mt-3">
-                            Projects We’ve Delivered
+                            Projects We&apos;ve Delivered
                         </h1>
 
                         <p className="text-gray-600 mt-4">
-                            Real products crafted with performance & scalability.
+                            Real products crafted with performance &amp; scalability.
                         </p>
                     </motion.div>
 
@@ -110,15 +59,15 @@ export default function OurWorkPage() {
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
-                        whileInView="show"            // 🔥 animation only on scroll
+                        whileInView="show"
                         viewport={{ once: true, amount: 0.2 }}
                         className="space-y-16"
                     >
-                        {projects.map((project, index) => (
+                        {projects.map((project) => (
                             <motion.div
-                                key={index}
+                                key={project.slug}
                                 variants={cardVariants}
-                                className="rounded-3xl  p-8 shadow-sm hover:shadow-lg transition"
+                                className="rounded-3xl p-8 shadow-sm hover:shadow-lg transition"
                             >
                                 {/* ROW */}
                                 <div className="grid md:grid-cols-2 gap-14 items-center">
@@ -154,44 +103,18 @@ export default function OurWorkPage() {
                                             ))}
                                         </div>
 
-                                        {/* BUTTON */}
-                                        <button
-                                            onClick={() => toggleProject(index)}
-                                            className="mt-4 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition cursor-pointer"
-                                        >
-                                            {openIndex === index
-                                                ? "Close Details ↑"
-                                                : "See More →"}
-                                        </button>
+                                        {/* BUTTON — navigates to /work/[slug] */}
+                                        <Link href={`/work/${project.slug}`}>
+                                            <motion.button
+                                                whileHover={{ scale: 1.04 }}
+                                                whileTap={{ scale: 0.97 }}
+                                                className="mt-4 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition cursor-pointer"
+                                            >
+                                                View Project →
+                                            </motion.button>
+                                        </Link>
                                     </div>
                                 </div>
-
-                                {/* ================= EXPAND DETAILS ================= */}
-                                <AnimatePresence>
-                                    {openIndex === index && (
-                                        <motion.div
-                                            initial={{ opacity: 0, height: 0 }}
-                                            animate={{ opacity: 1, height: "auto" }}
-                                            exit={{ opacity: 0, height: 0 }}
-                                            transition={{ duration: 0.35 }}
-                                            className="overflow-hidden"
-                                        >
-                                            <div className="mt-8 border-t pt-8 text-gray-700">
-                                                <p className="leading-relaxed mb-6">
-                                                    {project.longDescription}
-                                                </p>
-
-                                                <a
-                                                    href={project.live}
-                                                    target="_blank"
-                                                    className="inline-block px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
-                                                >
-                                                    Live Demo
-                                                </a>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
                             </motion.div>
                         ))}
                     </motion.div>
