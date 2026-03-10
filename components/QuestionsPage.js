@@ -45,7 +45,7 @@ export default function QuestionsPage() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.2 }}
         >
           <span className="text-blue-600 font-medium">FAQs</span>
           <h1 className="text-4xl md:text-5xl font-bold mt-3">
@@ -72,7 +72,7 @@ export default function QuestionsPage() {
                   duration: 0.6,
                   ease: "easeOut",
                 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
               >
                 {/* Question */}
                 <button

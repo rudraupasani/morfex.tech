@@ -54,10 +54,9 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className={`relative text-sm font-medium transition-colors
-                  ${
-                    isActive
-                      ? "text-blue-600"
-                      : "text-gray-600 hover:text-gray-900"
+                  ${isActive
+                    ? "text-blue-600"
+                    : "text-gray-600 hover:text-gray-900"
                   }
                 `}
               >
@@ -108,10 +107,9 @@ const Navbar = () => {
                     <Link
                       href={link.href}
                       className={`text-base font-medium transition
-                        ${
-                          isActive
-                            ? "text-blue-600"
-                            : "text-gray-600 hover:text-gray-900"
+                        ${isActive
+                          ? "text-blue-600"
+                          : "text-gray-600 hover:text-gray-900"
                         }
                       `}
                     >

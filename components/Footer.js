@@ -25,7 +25,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.2 }}
           >
             <img
               src="/logo.png"
@@ -43,7 +43,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.2 }}
           >
             <h4 className="font-semibold mb-4 text-gray-900">Quick Links</h4>
             <ul className="space-y-3 text-sm">
@@ -65,7 +65,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.2 }}
           >
             <h4 className="font-semibold mb-4 text-gray-900">Services</h4>
             <ul className="space-y-3 text-sm text-gray-600">
@@ -81,7 +81,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.2 }}
           >
             <h4 className="font-semibold mb-4 text-gray-900">Contact</h4>
             <ul className="space-y-3 text-sm text-gray-600">

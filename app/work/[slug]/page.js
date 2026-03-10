@@ -113,7 +113,7 @@ export default function ProjectPage({ params }) {
               </>
             )}
 
- 
+
             {/* BUTTONS */}
             <div className="flex gap-4 flex-wrap">
 

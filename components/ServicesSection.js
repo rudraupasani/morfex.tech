@@ -82,7 +82,7 @@ export default function ServicesSection() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition"
               >
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-100 text-blue-600 mb-5 group-hover:scale-110 transition">

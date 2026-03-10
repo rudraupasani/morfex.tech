@@ -67,7 +67,7 @@ export default function OurWorkPage() {
                             <motion.div
                                 key={project.slug}
                                 variants={cardVariants}
-                                className="rounded-3xl p-8 shadow-sm hover:shadow-lg transition"
+                                className="rounded-3xl p-8 shadow-sm"
                             >
                                 {/* ROW */}
                                 <div className="grid md:grid-cols-2 gap-14 items-center">
@@ -76,7 +76,6 @@ export default function OurWorkPage() {
                                     <motion.img
                                         src={project.image}
                                         alt={project.title}
-                                        whileHover={{ scale: 1.05 }}
                                         transition={{ duration: 0.3 }}
                                         className="rounded-2xl shadow-lg w-full"
                                     />

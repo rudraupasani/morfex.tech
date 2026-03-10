@@ -98,7 +98,7 @@ export default function BenefitsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.08, duration: 0.5 }}
                 viewport={{ once: true }}
-                className="group relative bg-white border border-gray-200 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+                className="group relative bg-white border border-gray-200 rounded-2xl p-8 transition-all duration-300"
               >
                 {/* Icon */}
                 <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-blue-500 text-white shadow-md mb-6 group-hover:scale-110 transition">

@@ -5,7 +5,11 @@
     "description": "Modern security product website showcasing CCTV cameras and surveillance systems.",
     "longDescription": "Microcam is a premium surveillance brand website built for product showcasing, branding, smooth animations and professional user experience.",
     "image": "https://myacernity.vercel.app/micro-ss.png",
-    "tech": ["React", "Tailwind", "Framer Motion"],
+    "tech": [
+      "React",
+      "Tailwind",
+      "Framer Motion"
+    ],
     "features": [
       "Product showcase",
       "Smooth UI animations",
@@ -33,7 +37,12 @@
     "description": "A modern marketing website focused on conversion, animations and high-performance architecture.",
     "longDescription": "Drft Marketing was built with performance-first architecture, smooth animations, SEO optimization and strong conversion design to maximize engagement and leads.",
     "image": "https://myacernity.vercel.app/drft-thumb.png",
-    "tech": ["Next.js", "Tailwind", "Framer Motion", "Supabase"],
+    "tech": [
+      "Next.js",
+      "Tailwind",
+      "Framer Motion",
+      "Supabase"
+    ],
     "features": [
       "High-conversion landing pages",
       "Smooth scroll animations",
@@ -56,12 +65,54 @@
     "github": "#"
   },
   {
+    "slug": "finny",
+    "title": "Finny - Finance App",
+    "description": "Finny is a finance app that helps you manage your money and track your expenses.",
+    "longDescription": "Finny is a modern finance application that helps you manage your money, track expenses, and achieve your financial goals. It provides a user-friendly interface for tracking income and expenses, setting budgets, and monitoring financial health. With its intuitive design, interactive charts, and powerful features, Finny makes managing your finances easier than ever before.",
+    "image": "/r1.png",
+    "tech": [
+      "React Native",
+      "Framer Motion",
+      "Supabase",
+      "MongoDB",
+      "Node.js"
+    ],
+    "features": [
+      "Expense and Income Tracking",
+      "Interactive Financial Dashboards",
+      "Budget Setting and Monitoring",
+      "Responsive User Interface",
+      "Secure User Authentication"
+    ],
+    "category": "Finance Application",
+    "role": "Full Stack Developer",
+    "client": "Personal Project",
+    "year": "2025",
+    "status": "Live",
+    "metrics": {
+      "performance": "98 Lighthouse",
+      "seo": "100",
+      "loadTime": "0.6s"
+    },
+    "Time": "14 days",
+    "live": "#",
+    "github": "#"
+  },
+  {
     "slug": "instakit",
     "title": "Instakit",
     "description": "Toolkit platform with authentication, dashboards and scalable backend using Supabase and MongoDB.",
     "longDescription": "Instakit provides authentication, dashboards, database management and scalable backend services for startups and teams with modern developer experience.",
     "image": "https://myacernity.vercel.app/qucikit-thumb.png",
-    "tech": ["React", "Supabase", "Node JS", "MongoDB" , "Express JS", "Tailwind", "Framer Motion"],
+    "tech": [
+      "React",
+      "Supabase",
+      "Node JS",
+      "MongoDB",
+      "Express JS",
+      "Tailwind",
+      "Framer Motion"
+    ],
     "features": [
       "Secure authentication system",
       "Admin dashboard",
@@ -73,7 +124,7 @@
     "role": "Full Stack Developer",
     "client": "Internal Project",
     "year": "2025",
-    "status": "Development",
+    "status": "Live",
     "metrics": {
       "performance": "94 Lighthouse",
       "apiResponse": "120ms",
@@ -89,7 +140,14 @@
     "description": "Real-time live platform with blazing fast UI and scalable backend architecture.",
     "longDescription": "Hook.live enables real-time communication with optimized React UI, websocket architecture and high performance backend services for scalable real-time platforms.",
     "image": "https://myacernity.vercel.app/hook-thumb.png",
-    "tech": ["Next.js", "Tailwind", "Framer Motion", "Node JS", "MongoDB", "Express JS"],
+    "tech": [
+      "Next.js",
+      "Tailwind",
+      "Framer Motion",
+      "Node JS",
+      "MongoDB",
+      "Express JS"
+    ],
     "features": [
       "Real-time messaging",
       "WebSocket architecture",
@@ -101,7 +159,7 @@
     "role": "Full Stack Developer",
     "client": "Startup Project",
     "year": "2025",
-    "status": "Development",
+    "status": "Live",
     "metrics": {
       "performance": "93 Lighthouse",
       "latency": "80ms",
