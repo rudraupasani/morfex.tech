@@ -72,9 +72,7 @@
     "image": "/r1.png",
     "tech": [
       "React Native",
-      "Framer Motion",
-      "Supabase",
-      "MongoDB",
+      "firebase",
       "Node.js"
     ],
     "features": [
@@ -94,7 +92,7 @@
       "seo": "100",
       "loadTime": "0.6s"
     },
-    "Time": "14 days",
+    "Time": "20 days",
     "live": "#",
     "github": "#"
   },
@@ -106,9 +104,7 @@
     "image": "https://myacernity.vercel.app/qucikit-thumb.png",
     "tech": [
       "React",
-      "Supabase",
       "Node JS",
-      "MongoDB",
       "Express JS",
       "Tailwind",
       "Framer Motion"
@@ -150,7 +146,6 @@
     ],
     "features": [
       "Real-time messaging",
-      "WebSocket architecture",
       "High performance backend",
       "Responsive UI",
       "Secure authentication"
