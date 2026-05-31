@@ -25,7 +25,7 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full bg-blue-100 text-blue-600 border border-blue-200"
           >
             <a href="https://www.cluezy.site" target="_blank" rel="noopener noreferrer" className="hover:underline">
-            Try Cluezy - AI
+              Try Cluezy - AI
             </a>
           </motion.span>
 

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 export default function CTASection() {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <section className="relative bg-blue-400 text-white py-24 overflow-hidden">
       <motion.div
@@ -22,14 +22,14 @@ export default function CTASection() {
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <motion.button
-          onClick={()=> {
-            router.push("/contact");
-          }}
+            onClick={() => {
+              router.push("/contact");
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-6 cursor-pointer py-3 rounded-xl bg-white text-blue-600 font-medium shadow-lg hover:bg-gray-100 transition"
           >
-              Let’s Discuss Your Project
+            Let’s Discuss Your Project
           </motion.button>
         </div>
       </motion.div>

@@ -31,7 +31,7 @@ const services = [
       "Tailwind CSS",
       "REST APIs",
       "Supabase",
-      "Firebase",   
+      "Firebase",
       "Node.js",
       "MySQL",
       "MongoDB",
@@ -51,7 +51,7 @@ const services = [
       "Tailwind CSS",
       "REST APIs",
       "Supabase",
-      "Firebase",   
+      "Firebase",
       "Node.js",
       "MySQL",
       "MongoDB",
@@ -71,7 +71,7 @@ const services = [
       "Tailwind CSS",
       "REST APIs",
       "Supabase",
-      "Firebase",   
+      "Firebase",
       "Node.js",
       "MySQL",
       "MongoDB",
@@ -81,7 +81,7 @@ const services = [
     image: "https://softwebcreations.com/assets/img/features-1.png",
     reverse: true,
   },
-  
+
 ];
 
 export default function ServicesPage() {
@@ -94,7 +94,7 @@ export default function ServicesPage() {
           <span className="text-blue-600 font-medium text-2xl">Our Services</span>
           <p className="text-gray-600 mt-4 text-lg">
             At Morfex Tech, we offer end-to-end software development services to help businesses of all sizes build modern, scalable, and secure digital products. Our expertise spans mobile apps, web applications, SaaS platforms, and MVP development.
-          </p>  
+          </p>
         </div>
         <div className="max-w-7xl mx-auto px-6 space-y-32">
           {services.map((service, index) => (

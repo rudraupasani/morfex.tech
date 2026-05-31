@@ -47,7 +47,7 @@ export default function Footer() {
           >
             <h4 className="font-semibold mb-4 text-gray-900">Quick Links</h4>
             <ul className="space-y-3 text-sm">
-              {["Work","Products", "Services", "About", "Contact"].map((item) => (
+              {["Work", "Services", "About", "Contact"].map((item) => (
                 <li key={item}>
                   <Link
                     href={`/${item.toLowerCase()}`}
@@ -114,9 +114,9 @@ export default function Footer() {
           className="flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <p className="text-sm text-gray-500">
-            © 2026 Morfex Technology . All rights reserved.
+            © 2025 Morfex Technology . All rights reserved.
           </p>
-          
+
 
           {/* Social Icons */}
           <div className="flex items-center gap-5">
