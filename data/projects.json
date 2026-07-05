@@ -1,10 +1,43 @@
 [
   {
+    "slug": "jwellery-ecommerce",
+    "title": "Jwellery Ecommerce Website",
+    "description": "Modern e-commerce website for a jewelry brand with a focus on aesthetics and user experience.",
+    "longDescription": "Jwellery is a modern e-commerce platform designed for showcasing exquisite jewelry pieces, offering seamless shopping experiences, and providing detailed product information .",
+    "image": "https://res.cloudinary.com/rudraupasani/image/upload/v1783231783/photo/aa1ujtewcredi4gx3kqn.png",
+    "tech": [
+      "Next.js",
+      "Tailwind",
+      "Framer Motion",
+      "Supabase"
+    ],
+    "features": [
+      "Product showcase",
+      "Smooth UI animations",
+      "Responsive design",
+      "SEO optimized pages",
+      "Contact form integration"
+    ],
+    "category": "E-commerce Website",
+    "role": "Full Stack Developer",
+    "client": "Jwellery Brand",
+    "year": "2026",
+    "status": "Live",
+    "metrics": {
+      "performance": "90+ Lighthouse",
+      "seo": "90",
+      "loadTime": "0.9s"
+    },
+    "Time": "7 days",
+    "live": "#",
+    "github": "#"
+  },
+  {
     "slug": "microcam",
     "title": "Microcam - CCTV & Surveillance",
     "description": "Modern security product website showcasing CCTV cameras and surveillance systems.",
     "longDescription": "Microcam is a premium surveillance brand website built for product showcasing, branding, smooth animations and professional user experience.",
-    "image": "https://myacernity.vercel.app/micro-ss.png",
+    "image": "https://res.cloudinary.com/rudraupasani/image/upload/v1783232480/photo/k6aaaxpbhocjdkcdztlk.png",
     "tech": [
       "React",
       "Tailwind",

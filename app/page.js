@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar'
 import QuestionsPage from '@/components/QuestionsPage'
 import ServicesSection from '@/components/ServicesSection'
 import Testimonials from '@/components/TestimonialSlider'
+import ProjectsShowcase from '@/components/ProjectsShowcase'
 import React from 'react'
 
 const page = () => {
@@ -15,6 +16,7 @@ const page = () => {
       <HeroSlider />
       <ServicesSection />
       <BenefitsPage />
+      <ProjectsShowcase />
       <Testimonials />
       <QuestionsPage />
       <CTASection />

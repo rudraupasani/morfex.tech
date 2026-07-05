@@ -68,7 +68,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6">
               {[
                 { label: "Projects Delivered", value: "8+" },
-                { label: "Happy Clients", value: "6+" },
+                { label: "Happy Clients", value: "8+" },
                 { label: "Years Experience", value: "1+" },
                 { label: "Tech Stack Mastery", value: "10+" },
               ].map((stat, i) => (

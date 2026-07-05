@@ -58,7 +58,6 @@ export default function OurWorkPage() {
                     {/* ================= PROJECT LIST ================= */}
                     <motion.div
                         variants={containerVariants}
-                        initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.2 }}
                         className="space-y-16"
