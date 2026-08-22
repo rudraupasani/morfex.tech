@@ -1,123 +1,115 @@
-
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Quote } from "lucide-react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Nilesh Upasani",
-    role: "Microcam",
-    message:
-      "Morfex Tech delivered an outstanding product with excellent performance and a clean, modern UI. Their team understood our requirements clearly and executed everything smoothly.",
+    quote: "Morfex delivered a product that exceeded our expectations. The attention to detail and speed of delivery was remarkable.",
+    author: "Siddharth Soni",
+    role: "Founder, Jwellery Brand",
+    initials: "SS",
   },
   {
-    name: "Benjin Lee",
-    role: "Instakit",
-    message:
-      "Working with Morfex Tech was a great experience. Communication was clear, timelines were respected, and the final product exceeded our expectations.",
+    quote: "They understood our vision from day one and translated it into a polished, high-performing platform. Highly recommended.",
+    author: "Nilesh Upasani",
+    role: "CEO, Microcam",
+    initials: "NU",
   },
   {
-    name: "Siddharth Soni",
-    role: "M/s Yogeshkumar And Brothers",
-    message:
-      "Their UI/UX improvements significantly boosted engagement and conversions. The design felt premium, intuitive, and highly professional.",
+    quote: "Working with Morfex was seamless. Their technical expertise and communication made the project a great success.",
+    author: "Benjin Lee",
+    role: "Co-founder, Drft Marketing",
+    initials: "BL",
   },
+
 ];
 
-export default function Testimonials() {
-  const [current, setCurrent] = useState(0);
+const doubled = [...testimonials, ...testimonials];
 
-  // Auto change every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
+function TestimonialCard({ item }) {
   return (
-    <section className="relative py-24 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold">
-            Client Testimonials
-          </span>
-
-          <h2 className="text-4xl md:text-5xl font-bold mt-5 text-slate-900">
-            Trusted by Businesses
-          </h2>
-
-          <p className="text-slate-500 mt-4 max-w-2xl mx-auto">
-            We help startups and companies build modern digital products that
-            scale, perform, and create exceptional user experiences.
+    <div
+      className="flex-shrink-0 w-[340px] md:w-[400px] border p-6 flex flex-col gap-4"
+      style={{ borderColor: "var(--line)", background: "var(--bg)" }}
+    >
+      {/* Quote mark */}
+      <span
+        aria-hidden="true"
+        style={{
+          fontFamily: "var(--font-geist-mono)",
+          fontSize: "1.5rem",
+          color: "var(--line-strong)",
+          lineHeight: 1,
+        }}
+      >
+        "
+      </span>
+      <p className="flex-1 text-sm leading-relaxed" style={{ color: "var(--fg)" }}>
+        {item.quote}
+      </p>
+      <div
+        className="flex items-center gap-3 border-t pt-4"
+        style={{ borderColor: "var(--line)" }}
+      >
+        <div
+          className="flex h-9 w-9 shrink-0 items-center justify-center text-xs font-medium"
+          style={{
+            background: "var(--fg)",
+            color: "var(--bg)",
+            fontFamily: "var(--font-geist-mono)",
+          }}
+        >
+          {item.initials}
+        </div>
+        <div>
+          <p className="text-sm font-medium" style={{ color: "var(--fg)" }}>
+            {item.author}
+          </p>
+          <p className="text-xs" style={{ color: "var(--muted)" }}>
+            {item.role}
           </p>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        {/* Testimonial Card */}
-        <div className="max-w-4xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -25 }}
-              transition={{ duration: 0.4 }}
-              className="
-                bg-white
-                border border-slate-200
-                rounded-3xl
-              
-                p-8 md:p-10
-              "
-            >
-              <Quote
-                size={32}
-                className="text-blue-600 mb-6"
-              />
+export default function Testimonials() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
-              <p className="text-lg md:text-xl leading-relaxed text-slate-600 mb-8">
-                "{testimonials[current].message}"
-              </p>
-
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
-                  {testimonials[current].name
-                    .split(" ")
-                    .map((word) => word[0])
-                    .slice(0, 2)
-                    .join("")}
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-slate-900">
-                    {testimonials[current].name}
-                  </h4>
-
-                  <p className="text-sm text-slate-500">
-                    {testimonials[current].role}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Dots */}
-          <div className="flex justify-center gap-3 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrent(index)}
-                className={`transition - all duration - 300 rounded - full ${current === index
-                  ? "w-8 h-2 bg-blue-600"
-                  : "w-2 h-2 bg-slate-300"
-                  } `}
-              />
-            ))}
+  return (
+    <section
+      className="section border-t overflow-hidden"
+      style={{ borderColor: "var(--line)" }}
+      id="testimonials"
+    >
+      <div className="shell" ref={ref}>
+        <div className="grid gap-6 md:grid-cols-12 md:gap-x-8 mb-12">
+          <div className="md:col-span-2">
+            <p className="eyebrow">04 — Testimonials</p>
           </div>
+          <div className="md:col-span-7">
+            <motion.h2
+              className="h1"
+              style={{ color: "var(--fg)" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              What our clients say.
+            </motion.h2>
+          </div>
+        </div>
+      </div>
+
+      {/* Scrolling ticker */}
+      <div className="border-t border-b py-8" style={{ borderColor: "var(--line)" }}>
+        <div className="flex gap-5 animate-testimonial-slider w-max">
+          {doubled.map((item, i) => (
+            <TestimonialCard key={i} item={item} />
+          ))}
         </div>
       </div>
     </section>

@@ -1,5 +1,166 @@
 @import "tailwindcss";
 
+/* ─── Design Tokens ────────────────────────────────────── */
+:root {
+  --bg: #ffffff;
+  --fg: #09090b;
+  --muted: #71717a;
+  --faint: #a1a1aa;
+  --surface: #f4f4f5;
+  --line: #e4e4e7;
+  --line-strong: #d4d4d8;
+  --inverse: #09090b;
+  --inverse-fg: #ffffff;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark {
+  --bg: #09090b;
+  --fg: #fafafa;
+  --muted: #a1a1aa;
+  --faint: #71717a;
+  --surface: #18181b;
+  --line: #27272a;
+  --line-strong: #3f3f46;
+  --inverse: #fafafa;
+  --inverse-fg: #09090b;
+}
+
+/* ─── Base ────────────────────────────────────────────── */
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Layout ───────────────────────────────────────────── */
+.shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 0 1.25rem;
+  }
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 7rem 0;
+  }
+}
+
+.page-head {
+  padding: 8rem 0 5rem;
+}
+
+@media (min-width: 768px) {
+  .page-head {
+    padding: 6rem 0 5rem;
+  }
+}
+
+/* ─── Typography ──────────────────────────────────────── */
+.display {
+  font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+
+.h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.lede {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+/* ─── Grid cells ──────────────────────────────────────── */
+.cells {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.cells>div {
+  border-right: 1px solid var(--line);
+}
+
+.cells>div:last-child {
+  border-right: none;
+}
+
+/* ─── Flip text hover ─────────────────────────────────── */
+.flip-text {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.flip-text .flip-inner {
+  display: block;
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flip-text .flip-clone {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: translateY(100%);
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flip-group:hover .flip-inner {
+  transform: translateY(-100%);
+}
+
+.flip-group:hover .flip-clone {
+  transform: translateY(0);
+}
+
+/* ─── Progress bar ─────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--fg);
+  transform-origin: left center;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ─── Testimonial slider ───────────────────────────────── */
 @keyframes testimonial-slider {
   from {
     transform: translateX(0);
@@ -11,5 +172,20 @@
 }
 
 .animate-testimonial-slider {
-  animation: testimonial-slider 30s linear infinite;
+  animation: testimonial-slider 40s linear infinite;
+}
+
+/* ─── FAQ accordion ────────────────────────────────────── */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-content.open {
+  grid-template-rows: 1fr;
+}
+
+.faq-content>div {
+  overflow: hidden;
 }

@@ -1,118 +1,194 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
-    question: "What technologies do you specialize in?",
-    answer:
-      "We work with modern web and mobile technologies including React, Next.js, Node.js, React Native, Supabase, MongoDB, and more to deliver scalable solutions.",
+    q: "What types of projects do you take on?",
+    a: "We work on web applications, SaaS platforms, AI integrations, mobile apps, e-commerce stores, and marketing sites. We're selective — we take on projects where we can add real value, not just ship code.",
   },
   {
-    question: "How long does a project take?",
-    answer:
-      "Project timelines vary depending on the scope. Typically, web applications take 4–12 weeks, while complex platforms or mobile apps may take 3–6 months.",
+    q: "How long does a typical project take?",
+    a: "It depends on scope. A marketing site might take 2–3 weeks. A full SaaS product can take 8–12 weeks. We always define a clear timeline in discovery before any work begins.",
   },
   {
-    question: "Do you provide post-launch support?",
-    answer:
-      "Yes! We offer maintenance, updates, and long-term support packages to keep your product stable, secure, and optimized.",
+    q: "Do you work with startups or only established businesses?",
+    a: "Both. We've worked with early-stage founders building their first product and with established businesses modernising legacy systems. The engagement adapts to where you are.",
   },
   {
-    question: "Can you handle enterprise-level projects?",
-    answer:
-      "Absolutely. We design enterprise-ready systems focusing on scalability, security, and performance.",
+    q: "What's your development process?",
+    a: "We start with a discovery session to understand your goals and constraints. Then we move into design, development, testing, and deployment — with clear checkpoints and your input throughout.",
   },
   {
-    question: "Do you work with startups and small businesses?",
-    answer:
-      "Yes, we collaborate with startups and SMBs, offering flexible pricing and scalable solutions tailored to growth.",
+    q: "Can you take over an existing codebase?",
+    a: "Yes. We audit existing codebases regularly and take over maintenance or feature development when asked. We'll give you an honest assessment of what we find.",
+  },
+  {
+    q: "How do we communicate during the project?",
+    a: "We keep communication async-first via Slack or email with weekly sync calls. You'll always know where the project stands. No surprises.",
+  },
+  {
+    q: "What does it cost?",
+    a: "Pricing is project-based or a monthly retainer depending on the engagement. We'll give you a clear quote after a short discovery call. No hidden fees, no hourly billing anxiety.",
   },
 ];
 
-export default function QuestionsPage() {
-  const [openIndex, setOpenIndex] = useState(null);
+function FAQItem({ item, index }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
 
   return (
-    <section className="relative bg-gradient-to-b from-white via-slate-50 to-white py-28">
+    <motion.div
+      ref={ref}
+      className="border-b"
+      style={{ borderColor: "var(--line)" }}
+      initial={{ opacity: 0, x: -14 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ delay: index * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        className="group relative flex w-full items-start gap-5 py-5 text-left md:gap-8"
+        aria-expanded={open}
+      >
+        {/* Left accent bar */}
+        <span
+          className="absolute inset-y-0 left-0 w-px origin-top transition-transform duration-[560ms]"
+          style={{
+            background: "var(--fg)",
+            transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+            transform: open ? "scaleY(1)" : "scaleY(0)",
+          }}
+          aria-hidden="true"
+        />
 
-      <div className="relative max-w-5xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.2 }}
+        {/* Index */}
+        <span
+          className="mt-[0.3rem] shrink-0 transition-[padding] duration-500"
+          style={{
+            fontFamily: "var(--font-geist-mono)",
+            fontSize: "0.6875rem",
+            letterSpacing: "0.12em",
+            color: "var(--faint)",
+            paddingLeft: open ? "1rem" : "0",
+            transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+          }}
         >
-          <span className="text-blue-600 font-medium">FAQs</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-gray-600 mt-5 text-lg max-w-2xl mx-auto">
-            Everything you need to know about working with Morfex Tech.
-          </p>
-        </motion.div>
+          {String(index + 1).padStart(2, "0")}
+        </span>
 
-        {/* FAQ List */}
-        <div className="space-y-6">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
+        {/* Question */}
+        <span
+          className="flex-1 font-medium leading-snug tracking-[-0.02em]"
+          style={{ fontSize: "clamp(1rem, 1.6vw, 1.25rem)", color: "var(--fg)" }}
+        >
+          {item.q}
+        </span>
 
-            return (
-              <motion.div
-                key={index}
-                className="relative rounded-2xl border border-gray-200 bg-white shadow-md"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: index * 0.1,
-                  duration: 0.6,
-                  ease: "easeOut",
-                }}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                {/* Question */}
-                <button
-                  onClick={() =>
-                    setOpenIndex(isOpen ? null : index)
-                  }
-                  className="w-full cursor-pointer flex items-center justify-between gap-6 p-7 text-left"
-                >
-                  <h3 className="text-lg md:text-xl font-semibold text-gray-900">
-                    {faq.question}
-                  </h3>
+        {/* Plus / minus */}
+        <span
+          className="relative mt-1 block h-4 w-4 shrink-0"
+          aria-hidden="true"
+          style={{ color: "var(--muted)" }}
+        >
+          <span
+            className="absolute inset-y-[7px] left-0 right-0 h-[1.5px] bg-current transition-opacity duration-300"
+            style={{ opacity: 1 }}
+          />
+          <span
+            className="absolute inset-x-[7px] top-0 bottom-0 w-[1.5px] bg-current transition-all duration-300"
+            style={{
+              transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+              transform: open ? "scaleY(0)" : "scaleY(1)",
+            }}
+          />
+        </span>
+      </button>
 
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    <ChevronDown
-                      size={26}
-                      className="text-blue-600"
-                    />
-                  </motion.div>
-                </button>
+      {/* Answer */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="answer"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            <p
+              className="pb-6 text-sm leading-relaxed"
+              style={{ color: "var(--muted)", paddingLeft: "calc(0.6875rem + 2.5rem)" }}
+            >
+              {item.a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
-                {/* Answer – LAG FREE */}
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="px-7 pb-7 text-gray-600 leading-relaxed"
-                    >
-                      {faq.answer}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
+function CurtainReveal({ children, delay = 0 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <span className="relative block overflow-hidden pb-[0.06em]" ref={ref}>
+      <span className="block">{children}</span>
+      <motion.span
+        aria-hidden="true"
+        className="absolute inset-0 block"
+        style={{ background: "var(--bg)", transformOrigin: "right center" }}
+        initial={{ scaleX: 1 }}
+        animate={inView ? { scaleX: 0 } : { scaleX: 1 }}
+        transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <span className="absolute inset-y-0 right-0 w-px" style={{ background: "var(--fg)" }} />
+      </motion.span>
+    </span>
+  );
+}
+
+export default function QuestionsPage() {
+  const headRef = useRef(null);
+  const headInView = useInView(headRef, { once: true, margin: "-80px" });
+
+  return (
+    <section
+      className="section border-t"
+      style={{ borderColor: "var(--line)" }}
+      id="faq"
+    >
+      <div className="shell">
+        {/* Header */}
+        <div className="grid gap-6 md:grid-cols-12 md:gap-x-8 mb-12" ref={headRef}>
+          <div className="md:col-span-2">
+            <p className="eyebrow">05 — FAQ</p>
+          </div>
+          <div className="md:col-span-8">
+            <h2 className="h1" style={{ color: "var(--fg)" }}>
+              <CurtainReveal delay={0}>Questions we get</CurtainReveal>
+              <CurtainReveal delay={0.15}>asked a lot.</CurtainReveal>
+            </h2>
+            <motion.p
+              className="lede mt-5 max-w-[50ch]"
+              initial={{ opacity: 0, y: 12 }}
+              animate={headInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              If your question isn't here, just send us a message — we reply
+              within 24 hours.
+            </motion.p>
+          </div>
+        </div>
+
+        {/* FAQ list */}
+        <div className="border-t" style={{ borderColor: "var(--line)" }}>
+          {faqs.map((item, i) => (
+            <FAQItem key={i} item={item} index={i} />
+          ))}
         </div>
       </div>
     </section>

@@ -1,159 +1,230 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Linkedin,
-  Twitter,
-  Instagram,
-  FacebookIcon,
-} from "lucide-react";
+
+const footerLinks = [
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const services = [
+  "Web Development",
+  "SaaS Development",
+  "Mobile Apps",
+  "AI Integration",
+  "UI/UX Design",
+  "Backend & Cloud",
+];
+
+const socials = [
+  { label: "Instagram", href: "https://www.instagram.com/morfex.tech" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/morfextech" },
+  { label: "Twitter", href: "https://twitter.com/morfextech" },
+];
 
 export default function Footer() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
   return (
-    <footer className="relative bg-slate-50 border-t border-gray-200 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+    <footer
+      className="border-t"
+      style={{ borderColor: "var(--line)", background: "var(--bg)" }}
+    >
+      <div className="shell">
+        {/* ── Top section ── */}
+        <div className="grid gap-12 py-16 md:grid-cols-12 md:gap-x-8" ref={ref}>
 
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-
-          {/* Brand */}
+          {/* Brand column */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: false, amount: 0.2 }}
+            className="md:col-span-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             <img
               src="/logo.png"
-              alt="Morfex Tech Logo"
-              className="h-10 w-auto mb-4"
+              alt="Morfex Technologies"
+              className="h-8 w-auto mb-5"
             />
-            <p className="text-gray-600 mt-4 text-sm leading-relaxed">
-              Morfex Tech is a modern software development company delivering
-              scalable, secure, and high-performance digital solutions.
+            <p
+              className="text-sm leading-relaxed max-w-[32ch]"
+              style={{ color: "var(--muted)" }}
+            >
+              A software studio building web applications, SaaS platforms and AI
+              tools engineered for speed, clarity and longevity.
+            </p>
+            <p
+              className="mt-4 text-sm"
+              style={{ fontFamily: "var(--font-geist-mono)", color: "var(--faint)", fontSize: "0.6875rem", textTransform: "uppercase", letterSpacing: "0.12em" }}
+            >
+              Nadiad, Gujarat — India
             </p>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Navigation column */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: false, amount: 0.2 }}
+            className="md:col-span-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h4 className="font-semibold mb-4 text-gray-900">Quick Links</h4>
-            <ul className="space-y-3 text-sm">
-              {["Work", "Services", "About", "Contact"].map((item) => (
-                <li key={item}>
+            <p
+              className="mb-5 text-xs font-medium uppercase tracking-widest"
+              style={{ color: "var(--faint)", fontFamily: "var(--font-geist-mono)" }}
+            >
+              Navigate
+            </p>
+            <ul className="space-y-3">
+              {footerLinks.map((link) => (
+                <li key={link.label}>
                   <Link
-                    href={`/${item.toLowerCase()}`}
-                    className="text-gray-600 hover:text-blue-600 transition"
+                    href={link.href}
+                    className="group inline-flex items-center text-sm transition-colors duration-300"
+                    style={{ color: "var(--muted)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
                   >
-                    {item}
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Services */}
+          {/* Services column */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: false, amount: 0.2 }}
+            className="md:col-span-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.12, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h4 className="font-semibold mb-4 text-gray-900">Services</h4>
-            <ul className="space-y-3 text-sm text-gray-600">
-              <li>Web Development</li>
-              <li>Mobile App Development</li>
-              <li>Backend & Cloud</li>
-              <li>UI/UX Design</li>
+            <p
+              className="mb-5 text-xs font-medium uppercase tracking-widest"
+              style={{ color: "var(--faint)", fontFamily: "var(--font-geist-mono)" }}
+            >
+              Services
+            </p>
+            <ul className="space-y-3">
+              {services.map((s) => (
+                <li key={s}>
+                  <Link
+                    href="/services"
+                    className="text-sm transition-colors duration-300"
+                    style={{ color: "var(--muted)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                  >
+                    {s}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </motion.div>
 
-          {/* Contact */}
+          {/* Contact column */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: false, amount: 0.2 }}
+            className="md:col-span-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.18, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h4 className="font-semibold mb-4 text-gray-900">Contact</h4>
-            <ul className="space-y-3 text-sm text-gray-600">
-              <a
-                href="mailto:morfextech@gmail.com"
-                className="flex items-center gap-2 hover:text-blue-600 transition"
-              >
-                <Mail size={16} /> morfextech@gmail.com
-              </a>
-
-              <li className="flex items-center gap-2">
-                <Phone size={16} /> +91 90546 64402
+            <p
+              className="mb-5 text-xs font-medium uppercase tracking-widest"
+              style={{ color: "var(--faint)", fontFamily: "var(--font-geist-mono)" }}
+            >
+              Contact
+            </p>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="mailto:morfextech@gmail.com"
+                  className="text-sm transition-colors duration-300"
+                  style={{ color: "var(--muted)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                >
+                  morfextech@gmail.com
+                </a>
               </li>
-              <li className="flex items-center gap-2">
-                <MapPin size={16} /> Nadiad, Gujarat, India
+              <li>
+                <a
+                  href="tel:+919054664402"
+                  className="text-sm transition-colors duration-300"
+                  style={{ color: "var(--muted)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                >
+                  +91 90546 64402
+                </a>
+              </li>
+              <li className="text-sm" style={{ color: "var(--muted)" }}>
+                Nadiad, Gujarat, India
               </li>
             </ul>
+
+            {/* Social links */}
+            <div className="mt-8 flex gap-4">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center text-sm transition-colors duration-300"
+                  style={{ color: "var(--faint)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--faint)")}
+                  aria-label={s.label}
+                >
+                  <span
+                    className="text-[0.625rem] uppercase tracking-widest"
+                    style={{ fontFamily: "var(--font-geist-mono)" }}
+                  >
+                    {s.label}
+                  </span>
+                  <svg
+                    viewBox="0 0 10 10"
+                    aria-hidden="true"
+                    className="ml-1 h-[7px] w-[7px] opacity-50 transition-transform duration-500 group-hover:translate-x-px group-hover:-translate-y-px"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
+                  >
+                    <path d="M2.5 7.5 7.5 2.5M3.4 2.5h4.1v4.1" />
+                  </svg>
+                </a>
+              ))}
+            </div>
           </motion.div>
         </div>
 
-        {/* Divider */}
-        <div className="my-10 border-t border-gray-200" />
-
-        {/* Bottom Bar */}
+        {/* ── Bottom bar ── */}
         <motion.div
+          className="flex flex-col items-start justify-between gap-4 border-t py-6 sm:flex-row sm:items-center"
+          style={{ borderColor: "var(--line)" }}
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row items-center justify-between gap-6"
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.35, duration: 0.5 }}
         >
-          <p className="text-sm text-gray-500">
-            © 2025 Morfex Technology . All rights reserved.
+          <p
+            className="text-sm"
+            style={{ color: "var(--faint)" }}
+            suppressHydrationWarning
+          >
+            © 2025 Morfex Technologies. All rights reserved.
           </p>
-
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-5">
-            <motion.a
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://www.instagram.com/morfex.tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-pink-500 transition"
-            >
-              <Instagram size={18} />
-            </motion.a>
-
-            <motion.a
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://www.linkedin.com/company/morfextech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-blue-600 transition"
-            >
-              <Linkedin size={18} />
-            </motion.a>
-
-            <motion.a
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://twitter.com/morfextech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-sky-500 transition"
-            >
-              <Twitter size={18} />
-            </motion.a>
-
-          </div>
+          <p
+            className="text-[0.625rem] uppercase tracking-widest"
+            style={{ fontFamily: "var(--font-geist-mono)", color: "var(--faint)" }}
+          >
+            Built with precision in India
+          </p>
         </motion.div>
       </div>
     </footer>

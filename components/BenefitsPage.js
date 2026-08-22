@@ -1,132 +1,138 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  CheckCircle,
-  Zap,
-  Shield,
-  Users,
-  TrendingUp,
-  Rocket,
-} from "lucide-react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-const benefits = [
+const values = [
   {
-    icon: CheckCircle,
-    title: "High-Quality Software",
-    description:
-      "Reliable, scalable, and maintainable software built with modern technologies and optimized for long-term growth.",
-    tag: "Reliable",
+    number: "01",
+    title: "Precision over speed",
+    desc: "We take the time to understand your problem before writing a single line of code. Good software comes from good thinking.",
   },
   {
-    icon: Zap,
-    title: "Fast Delivery",
-    description:
-      "Our agile development workflow ensures fast project delivery while maintaining excellent code quality.",
-    tag: "Efficient",
+    number: "02",
+    title: "Built to last",
+    desc: "We write code that your future team can read, extend and maintain. No shortcuts that create debt three months later.",
   },
   {
-    icon: Shield,
-    title: "Secure Solutions",
-    description:
-      "Security-first development with industry best practices to protect your data and systems.",
-    tag: "Safe",
+    number: "03",
+    title: "Performance is a feature",
+    desc: "Every millisecond matters. We profile, measure and optimise until the interface answers immediately.",
   },
   {
-    icon: Users,
-    title: "Expert Team",
-    description:
-      "A team of experienced developers and designers focused on building high-quality digital products.",
-    tag: "Professional",
+    number: "04",
+    title: "Design and engineering together",
+    desc: "Our interfaces are grounded in engineering reality. We don't hand off mockups — we build what we design.",
   },
   {
-    icon: TrendingUp,
-    title: "Business Growth",
-    description:
-      "Solutions designed to scale with your business and improve performance and engagement.",
-    tag: "Scalable",
+    number: "05",
+    title: "Honest, direct communication",
+    desc: "We tell you what's realistic, what's risky, and what we'd do if it were our own product. No fluff.",
   },
   {
-    icon: Rocket,
-    title: "Innovative Solutions",
-    description:
-      "Modern technologies and creative thinking to build innovative digital experiences.",
-    tag: "Modern",
+    number: "06",
+    title: "One team, full ownership",
+    desc: "You work with the people building your product — not account managers passing notes to engineers.",
   },
 ];
 
-export default function BenefitsPage() {
+function CurtainReveal({ children, delay = 0 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section className="relative bg-gradient-to-b from-white via-slate-50 to-white py-28 overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute -top-32 right-0 w-96 h-96 bg-blue-400/10 blur-3xl rounded-full"></div>
-      <div className="absolute bottom-0 -left-32 w-96 h-96 bg-indigo-400/10 blur-3xl rounded-full"></div>
+    <span className="relative block overflow-hidden pb-[0.06em]" ref={ref}>
+      <span className="block">{children}</span>
+      <motion.span
+        aria-hidden="true"
+        className="absolute inset-0 block"
+        style={{ background: "var(--bg)", transformOrigin: "right center" }}
+        initial={{ scaleX: 1 }}
+        animate={inView ? { scaleX: 0 } : { scaleX: 1 }}
+        transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <span className="absolute inset-y-0 right-0 w-px" style={{ background: "var(--fg)" }} />
+      </motion.span>
+    </span>
+  );
+}
 
-      <div className="max-w-7xl mx-auto px-6">
+function ValueCard({ item, index }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
 
+  return (
+    <motion.div
+      ref={ref}
+      className="border-t pt-6 pb-6"
+      style={{ borderColor: "var(--line)" }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <span
+        className="block mb-4"
+        style={{
+          fontFamily: "var(--font-geist-mono)",
+          fontSize: "0.6875rem",
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: "var(--faint)",
+        }}
+      >
+        {item.number}
+      </span>
+      <h3
+        className="font-medium leading-snug tracking-[-0.025em] mb-3"
+        style={{ fontSize: "1.0625rem", color: "var(--fg)" }}
+      >
+        {item.title}
+      </h3>
+      <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+        {item.desc}
+      </p>
+    </motion.div>
+  );
+}
+
+export default function BenefitsPage() {
+  const headRef = useRef(null);
+  const headInView = useInView(headRef, { once: true, margin: "-80px" });
+
+  return (
+    <section
+      className="section border-t"
+      style={{ borderColor: "var(--line)" }}
+      id="approach"
+    >
+      <div className="shell">
         {/* Header */}
-        <motion.div
-          className="text-center max-w-2xl mx-auto mb-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <span className="text-blue-600 font-semibold uppercase tracking-wider text-sm">
-            Why Choose Us
-          </span>
-
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-gray-900">
-            Benefits of Working With Morfex Tech
-          </h2>
-
-          <p className="text-gray-600 mt-4 leading-relaxed">
-            We combine modern technologies, strong engineering practices,
-            and business-focused strategies to deliver software that drives growth.
-          </p>
-        </motion.div>
-
-        {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
-
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.08, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="group relative bg-white border border-gray-200 rounded-2xl p-8 transition-all duration-300"
-              >
-                {/* Icon */}
-                <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-blue-500 text-white shadow-md mb-6 group-hover:scale-110 transition">
-                  <Icon size={26} />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {benefit.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-600 text-sm mt-3 leading-relaxed">
-                  {benefit.description}
-                </p>
-
-                {/* Tag */}
-                <span className="inline-block mt-5 text-xs font-semibold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
-                  {benefit.tag}
-                </span>
-
-                {/* subtle border glow */}
-                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-blue-200 pointer-events-none transition"></div>
-              </motion.div>
-            );
-          })}
+        <div className="grid gap-6 md:grid-cols-12 md:gap-x-8 mb-14" ref={headRef}>
+          <div className="md:col-span-2">
+            <p className="eyebrow">03 — Our Approach</p>
+          </div>
+          <div className="md:col-span-8">
+            <h2 className="h1" style={{ color: "var(--fg)" }}>
+              <CurtainReveal delay={0}>The principles behind</CurtainReveal>
+              <CurtainReveal delay={0.15}>how we build.</CurtainReveal>
+            </h2>
+            <motion.p
+              className="lede mt-5 max-w-[52ch]"
+              initial={{ opacity: 0, y: 12 }}
+              animate={headInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              We don't believe in feature factories. We believe in understanding the
+              problem deeply, then solving it with minimal, precise software.
+            </motion.p>
+          </div>
         </div>
 
+        {/* Values grid */}
+        <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+          {values.map((item, i) => (
+            <ValueCard key={item.number} item={item} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );

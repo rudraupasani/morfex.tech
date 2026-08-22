@@ -16,15 +16,16 @@ export const metadata = {
   metadataBase: new URL("https://morfex.vercel.app"),
 
   title: {
-    default: "Morfex Technologies | Web Development, AI Tools & SaaS Solutions",
+    default: "Morfex Technologies — Software Studio",
     template: "%s | Morfex Technologies",
   },
 
   description:
-    "Morfex Technologies builds modern websites, AI-powered tools, SaaS platforms, and high-performance web applications using React, Next.js, Node.js, and modern technologies.",
+    "Morfex Technologies is a software studio building web applications, SaaS platforms, AI tools and digital products engineered for speed, clarity and longevity.",
 
   keywords: [
     "Morfex Technologies",
+    "Software Studio",
     "Web Development",
     "Next.js Developer",
     "React Developer",
@@ -33,55 +34,45 @@ export const metadata = {
     "Frontend Developer",
     "Full Stack Developer",
     "Website Development India",
-    "Modern Web Applications"
   ],
 
   authors: [{ name: "Rudra Upasani" }],
-
   creator: "Rudra Upasani",
 
   openGraph: {
-    title: "Morfex Technologies",
+    title: "Morfex Technologies — Software Studio",
     description:
-      "Building modern websites, SaaS platforms and AI-powered web applications with cutting-edge technologies.",
+      "Building web applications, SaaS platforms and AI-powered digital products with precision.",
     url: "https://morfex.vercel.app",
     siteName: "Morfex Technologies",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Morfex Technologies",
-      },
-    ],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Morfex Technologies" }],
     locale: "en_US",
     type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Morfex Technologies",
-    description:
-      "Modern web development, SaaS platforms and AI tools built with React, Next.js and Node.js.",
+    title: "Morfex Technologies — Software Studio",
+    description: "Modern web development, SaaS and AI tools built with React, Next.js and Node.js.",
     images: ["/og-image.png"],
   },
 
-  robots: {
-    index: true,
-    follow: true,
-  },
-
-  icons: {
-    icon: "/logo.png",
-  },
+  robots: { index: true, follow: true },
+  icons: { icon: "/logo.png" },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        {/* Dark mode hydration — prevent flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('morfex-theme');var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;var e=document.documentElement;e.classList.toggle('dark',d);e.style.colorScheme=d?'dark':'light';}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Analytics />
       </body>

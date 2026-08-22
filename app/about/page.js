@@ -1,252 +1,311 @@
 "use client";
 
-import Footer from "@/components/Footer";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import { motion } from "framer-motion";
-import { CheckCircle, Target, Eye } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Footer from "@/components/Footer";
+
+function CurtainReveal({ children, delay = 0 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <span className="relative block overflow-hidden pb-[0.06em]" ref={ref}>
+      <span className="block">{children}</span>
+      <motion.span
+        aria-hidden="true"
+        className="absolute inset-0 block"
+        style={{ background: "var(--bg)", transformOrigin: "right center" }}
+        initial={{ scaleX: 1 }}
+        animate={inView ? { scaleX: 0 } : { scaleX: 1 }}
+        transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <span className="absolute inset-y-0 right-0 w-px" style={{ background: "var(--fg)" }} />
+      </motion.span>
+    </span>
+  );
+}
+
+const stats = [
+  { label: "Projects delivered", value: "25+" },
+  { label: "Happy clients", value: "20+" },
+  { label: "Years active", value: "2+" },
+  { label: "Technologies", value: "15+" },
+];
+
+const team = [
+  {
+    name: "Rudra Upasani",
+    role: "Founder & Lead Engineer",
+    initials: "RU",
+    bio: "Full-stack engineer with a focus on React, Next.js and scalable backend systems. Passionate about building software that works beautifully.",
+  },
+];
+
+const timeline = [
+  { year: "2022", event: "Morfex Technologies founded in Nadiad, Gujarat." },
+  { year: "2023", event: "First 5 client projects delivered — web apps & landing pages." },
+  { year: "2024", event: "Expanded into SaaS, mobile development and AI integrations." },
+  { year: "2025", event: "Delivered 20+ projects across industries. Studio now fully operational." },
+  { year: "2026", event: "Growing team, taking on bigger and more complex engagements." },
+];
 
 export default function AboutPage() {
-  const router = useRouter()
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: "-80px" });
+
   return (
     <>
       <Navbar />
+      <main id="main" style={{ background: "var(--bg)" }}>
 
-      <section className="relative w-full bg-gradient-to-br from-white via-slate-50 to-slate-100 text-gray-900 overflow-hidden">
-
-        {/* Background Glows */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl" />
-
-        {/* ================= HERO ================= */}
-        <div className="max-w-7xl mx-auto px-6 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-blue-100 text-blue-600 border border-blue-200">
-              About Morfex Tech
-            </span>
-
-            <h1 className="text-4xl md:text-6xl font-bold mt-6 leading-tight">
-              Engineering Digital Solutions
-              <span className="text-blue-600"> For Growth</span>
-            </h1>
-
-            <p className="mt-6 text-lg text-gray-600">
-              We help startups and businesses build scalable, secure, and
-              future-ready software products with modern technologies.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* ================= WHO WE ARE ================= */}
-        <div className="max-w-7xl mx-auto px-6 pb-32 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold">Who We Are</h2>
-
-            <p className="text-gray-600 text-lg">
-              Morfex Tech is a modern software development company specializing
-              in web apps, mobile apps, SaaS platforms, and cloud solutions.
-            </p>
-
-            <p className="text-gray-600 text-lg">
-              We combine clean architecture, performance-driven development,
-              and user-centric design to deliver products that scale confidently.
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6">
-              {[
-                { label: "Projects Delivered", value: "8+" },
-                { label: "Happy Clients", value: "8+" },
-                { label: "Years Experience", value: "1+" },
-                { label: "Tech Stack Mastery", value: "10+" },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -6 }}
-                  className="bg-white rounded-2xl p-6 shadow-lg border text-center"
-                >
-                  <h3 className="text-3xl font-bold text-blue-600">
-                    {stat.value}
-                  </h3>
-                  <p className="text-gray-600 text-sm mt-2">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="absolute  rounded-3xl" />
-            <img
-              src="https://softwebcreations.com/assets/img/hero-img.png"
-              alt="About Morfex Tech"
-              className="relative rounded-3xl"
-            />
-          </motion.div>
-        </div>
-
-        {/* ================= MISSION ================= */}
-        <div className="bg-white py-24 border-t">
-          <div className="max-w-6xl mx-auto px-6 text-center">
-            <motion.h2 className="text-3xl md:text-4xl font-bold">
-              Our Mission
-            </motion.h2>
-
-            <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-              To help businesses transform ideas into powerful digital products
-              through innovation, technology excellence, and strategic execution.
-            </p>
-          </div>
-        </div>
-
-        {/* ================= GOAL & VISION ================= */}
-        <div className="max-w-7xl mx-auto px-6 py-28 grid grid-cols-1 md:grid-cols-2 gap-12">
-
-          {/* Goal */}
-          <motion.div
-            whileHover={{ y: -8 }}
-            className="bg-white rounded-3xl p-10 shadow-xl border"
-          >
-            <Target className="w-10 h-10 text-blue-600 mb-6" />
-            <h3 className="text-2xl font-bold mb-4">Our Goal</h3>
-            <p className="text-gray-600 text-lg">
-              Our goal is to empower startups and enterprises by building
-              high-quality, scalable, and secure digital solutions that solve
-              real-world problems and accelerate business growth.
-            </p>
-          </motion.div>
-
-          {/* Vision */}
-          <motion.div
-            whileHover={{ y: -8 }}
-            className="bg-white rounded-3xl p-10 shadow-xl border"
-          >
-            <Eye className="w-10 h-10 text-indigo-600 mb-6" />
-            <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-            <p className="text-gray-600 text-lg">
-              To become a trusted global technology partner known for innovation,
-              reliability, and delivering digital products that shape the future.
-            </p>
-          </motion.div>
-
-        </div>
-
-        {/* ================= CORE VALUES ================= */}
-        <div className="bg-gradient-to-br from-slate-50 to-white py-28 border-t">
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.h2 className="text-3xl md:text-4xl font-bold text-center">
-              Our Core Values
-            </motion.h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
-              {[
-                {
-                  title: "Quality First",
-                  desc: "We prioritize clean code, performance, and scalability.",
-                },
-                {
-                  title: "Client-Centric",
-                  desc: "Your business goals shape every technical decision.",
-                },
-                {
-                  title: "Innovation",
-                  desc: "We leverage modern technologies for future-ready products.",
-                },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -10 }}
-                  className="bg-white p-8 rounded-3xl shadow-xl border"
-                >
-                  <h3 className="text-xl font-semibold mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600">
-                    {item.desc}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ================= WHY CHOOSE US ================= */}
-        <div className="py-28 border-t">
-          <div className="max-w-6xl mx-auto px-6">
-            <motion.h2 className="text-3xl md:text-4xl font-bold text-center">
-              Why Choose Morfex Tech
-            </motion.h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-              {[
-                "Modern Tech Stack & Best Practices",
-                "Transparent Communication",
-                "Scalable Architecture",
-                "Fast MVP Delivery",
-                "Long-term Support",
-                "Startup & Enterprise Experience",
-              ].map((point, i) => (
-                <div key={i} className="flex gap-4">
-                  <CheckCircle className="text-blue-600 mt-1" />
-                  <p className="text-lg text-gray-700">{point}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ================= CTA ================= */}
-        <section className="relative bg-blue-400 text-white py-24 overflow-hidden">
-          <motion.div
-            className="max-w-4xl mx-auto text-center px-6"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Build Your Next Digital Product?
-            </h2>
-            <p className="text-gray-100 mb-8">
-              Let’s turn your ideas into powerful software solutions. Partner with Morfex Tech today.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <motion.button
-                onClick={() => {
-                  router.push("/contact");
+        {/* ── Page head ── */}
+        <section className="page-head border-b" style={{ borderColor: "var(--line)" }}>
+          <div className="shell">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b pb-4" style={{ borderColor: "var(--line)" }}>
+              <p className="eyebrow">About Morfex</p>
+              <p
+                style={{
+                  fontFamily: "var(--font-geist-mono)",
+                  fontSize: "0.6875rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.14em",
+                  color: "var(--faint)",
                 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 cursor-pointer py-3 rounded-xl bg-white text-blue-600 font-medium shadow-lg hover:bg-gray-100 transition"
               >
-                Let’s Discuss Your Project
-              </motion.button>
+                Est. 2022 — Nadiad, India
+              </p>
             </div>
-          </motion.div>
+            <div className="grid gap-10 pt-10 md:grid-cols-12 md:gap-x-8">
+              <div className="md:col-span-8">
+                <h1 className="display" style={{ color: "var(--fg)" }}>
+                  <CurtainReveal delay={0.2}>A software studio</CurtainReveal>
+                  <CurtainReveal delay={0.36}>that cares about</CurtainReveal>
+                  <CurtainReveal delay={0.52}>what it ships.</CurtainReveal>
+                </h1>
+                <motion.p
+                  className="lede mt-7 max-w-[50ch]"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  Morfex Technologies was founded on a simple belief: software should
+                  be precise, fast, and a pleasure to use. We're a small, focused
+                  team that takes on a limited number of projects so each one gets
+                  the attention it deserves.
+                </motion.p>
+              </div>
+            </div>
 
+            {/* Stats */}
+            <dl
+              className="cells mt-12 border-b"
+              style={{ gridTemplateColumns: "repeat(2, 1fr)" }}
+              ref={statsRef}
+            >
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  className="px-4 py-5"
+                  style={{
+                    borderRight: i % 2 === 0 ? "1px solid var(--line)" : (i < stats.length - 2 ? "1px solid var(--line)" : "none"),
+                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={statsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 1.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <dt className="eyebrow">{s.label}</dt>
+                  <dd className="mt-2 text-[0.875rem] tracking-[-0.012em]" style={{ color: "var(--fg)" }}>
+                    {s.value}
+                  </dd>
+                </motion.div>
+              ))}
+            </dl>
+          </div>
         </section>
 
-      </section>
+        {/* ── Who we are ── */}
+        <section className="section border-t" style={{ borderColor: "var(--line)" }} id="who">
+          <div className="shell">
+            <div className="grid gap-10 md:grid-cols-12 md:gap-x-8">
+              <div className="md:col-span-2">
+                <p className="eyebrow">Who we are</p>
+              </div>
+              <div className="md:col-span-7">
+                <h2 className="h1" style={{ color: "var(--fg)" }}>
+                  <CurtainReveal delay={0}>Built around craft,</CurtainReveal>
+                  <CurtainReveal delay={0.15}>not headcount.</CurtainReveal>
+                </h2>
+                <div className="mt-7 space-y-4 max-w-[55ch]">
+                  {[
+                    "We started Morfex because we were tired of seeing projects handed off between account managers, designers, and overseas teams — with quality dropping at every handoff.",
+                    "So we built a studio where the engineers are the people you talk to, and the product you get reflects the care that went into building it.",
+                    "We work with a small number of clients at any given time, which means you get genuine attention and not just a slot in a production queue.",
+                  ].map((p, i) => (
+                    <motion.p
+                      key={i}
+                      className="text-sm leading-relaxed"
+                      style={{ color: "var(--muted)" }}
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{ delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      {p}
+                    </motion.p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        {/* ── Team ── */}
+        <section className="section border-t" style={{ borderColor: "var(--line)" }} id="team">
+          <div className="shell">
+            <div className="grid gap-10 md:grid-cols-12 md:gap-x-8 mb-12">
+              <div className="md:col-span-2">
+                <p className="eyebrow">The team</p>
+              </div>
+              <div className="md:col-span-7">
+                <h2 className="h1" style={{ color: "var(--fg)" }}>
+                  <CurtainReveal delay={0}>People behind</CurtainReveal>
+                  <CurtainReveal delay={0.15}>the work.</CurtainReveal>
+                </h2>
+              </div>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {team.map((member, i) => (
+                <motion.div
+                  key={member.name}
+                  className="border p-6"
+                  style={{ borderColor: "var(--line)" }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div
+                    className="flex h-14 w-14 items-center justify-center mb-5 text-sm font-medium"
+                    style={{
+                      background: "var(--fg)",
+                      color: "var(--bg)",
+                      fontFamily: "var(--font-geist-mono)",
+                    }}
+                  >
+                    {member.initials}
+                  </div>
+                  <p className="font-medium mb-1" style={{ color: "var(--fg)" }}>{member.name}</p>
+                  <p
+                    className="mb-4"
+                    style={{
+                      fontFamily: "var(--font-geist-mono)",
+                      fontSize: "0.625rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.12em",
+                      color: "var(--faint)",
+                    }}
+                  >
+                    {member.role}
+                  </p>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{member.bio}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Timeline ── */}
+        <section className="section border-t" style={{ borderColor: "var(--line)" }} id="history">
+          <div className="shell">
+            <div className="grid gap-10 md:grid-cols-12 md:gap-x-8 mb-12">
+              <div className="md:col-span-2">
+                <p className="eyebrow">Timeline</p>
+              </div>
+              <div className="md:col-span-7">
+                <h2 className="h1" style={{ color: "var(--fg)" }}>
+                  <CurtainReveal delay={0}>How we got here.</CurtainReveal>
+                </h2>
+              </div>
+            </div>
+            <div className="border-t" style={{ borderColor: "var(--line)" }}>
+              {timeline.map((item, i) => (
+                <motion.div
+                  key={item.year}
+                  className="flex items-start gap-8 border-b py-6"
+                  style={{ borderColor: "var(--line)" }}
+                  initial={{ opacity: 0, x: -14 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span
+                    className="shrink-0 w-16"
+                    style={{
+                      fontFamily: "var(--font-geist-mono)",
+                      fontSize: "0.6875rem",
+                      letterSpacing: "0.08em",
+                      color: "var(--faint)",
+                      paddingTop: "0.3rem",
+                    }}
+                  >
+                    {item.year}
+                  </span>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                    {item.event}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CTA ── */}
+        <section className="section border-t" style={{ borderColor: "var(--line)" }}>
+          <div className="shell">
+            <div className="grid gap-10 md:grid-cols-12 md:gap-x-8">
+              <div className="md:col-span-2" />
+              <div className="md:col-span-7">
+                <h2 className="h1" style={{ color: "var(--fg)" }}>
+                  <CurtainReveal delay={0}>Ready to start</CurtainReveal>
+                  <CurtainReveal delay={0.15}>something new?</CurtainReveal>
+                </h2>
+                <motion.div
+                  className="mt-8 flex flex-wrap gap-3"
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Link
+                    href="/contact"
+                    className="group inline-flex h-11 items-center gap-3 overflow-hidden px-5 text-[0.875rem] font-medium"
+                    style={{ background: "var(--inverse)", color: "var(--inverse-fg)" }}
+                  >
+                    <span className="relative block overflow-hidden">
+                      <span className="block transition-transform duration-[520ms] group-hover:-translate-y-full" style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}>
+                        Get in touch
+                      </span>
+                      <span aria-hidden="true" className="absolute inset-0 block translate-y-full transition-transform duration-[520ms] group-hover:translate-y-0" style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}>
+                        Get in touch
+                      </span>
+                    </span>
+                  </Link>
+                  <Link
+                    href="/work"
+                    className="group inline-flex h-11 items-center gap-3 border px-5 text-[0.875rem] font-medium transition-colors duration-300"
+                    style={{ borderColor: "var(--line-strong)", color: "var(--fg)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--fg)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--line-strong)")}
+                  >
+                    See our work
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
       <Footer />
     </>
   );

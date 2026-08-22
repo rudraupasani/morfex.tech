@@ -11,15 +11,17 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
+    <div style={{ background: 'var(--bg)', color: 'var(--fg)' }}>
       <Navbar />
-      <HeroSlider />
-      <ServicesSection />
-      <BenefitsPage />
-      <ProjectsShowcase />
-      <Testimonials />
-      <QuestionsPage />
-      <CTASection />
+      <main id="main">
+        <HeroSlider />
+        <ServicesSection />
+        <ProjectsShowcase />
+        <BenefitsPage />
+        <Testimonials />
+        <QuestionsPage />
+        <CTASection />
+      </main>
       <Footer />
     </div>
   )
