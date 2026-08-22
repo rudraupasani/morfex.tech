@@ -16,7 +16,7 @@ export const metadata = {
   metadataBase: new URL("https://morfex.vercel.app"),
 
   title: {
-    default: "Morfex Technologies — Software Studio",
+    default: "Morfex Technologies",
     template: "%s | Morfex Technologies",
   },
 
